@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south.png" id="2_basic_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"basic"
+name = "Basic"
+color = &"red"
+initial = "B"
+rank = &"normal"
+category = &"frontline"
+hp = 30
+attack = 3
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([])
+danger_score = 3
+keywords = PackedStringArray("Basic")
+icon = ExtResource("2_basic_icon")
+description = "A simple baseline frontline enemy that advances 1 tile per turn."

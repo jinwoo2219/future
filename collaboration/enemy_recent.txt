@@ -1,0 +1,89 @@
+Enemy Data Recent
+
+What changed
+- Added approved `color` and `initial` fields to the shared EnemyData baseline and local EnemyData resource script.
+- Added enemy visual shorthand values:
+  - Basic = red / B
+  - Tank = blue / T
+  - Speeder = yellow / S
+- Updated EnemyData to support the approved `attack` field in the current schema baseline.
+- Added the `Basic` enemy baseline entry under res://data/enemies/basic.tres using the approved role/movement mapping:
+  - rank: normal
+  - category: frontline
+  - hp: 30
+  - attack: 3
+  - move_pattern_id: straight_1
+  - traits: empty
+  - danger_score: 3
+- Added the `Tank` enemy baseline entry under res://data/enemies/tank.tres using the approved role/movement mapping:
+  - rank: normal
+  - category: tank
+  - hp: 55
+  - attack: 2
+  - move_pattern_id: hold_then_move
+  - traits: empty
+  - danger_score: 4
+- Added the `Speeder` enemy baseline entry under res://data/enemies/speeder.tres using the approved role/movement mapping:
+  - rank: normal
+  - category: runner
+  - hp: 18
+  - attack: 5
+  - move_pattern_id: straight_2
+  - traits: empty
+  - danger_score: 4
+- Added owned resource scripts for EnemyData, EnemyPoolData, BossData, and TotemData under res://scripts/data/.
+- Added a starter enemy roster under res://data/enemies/ with reusable ids, traits, move pattern ids, descriptions, and danger scores.
+- Added clearly separated pool resources under res://data/enemy_pools/ for:
+  - act_1_base
+  - act_2_added
+  - act_3_added
+  - elite_pool
+- Added one boss resource under res://data/bosses/ and three totem resources under res://data/totems/.
+- Established enemy-owned rank categories in current content usage:
+  - common
+  - pressure
+  - captain
+  - elite
+- Established reusable trait tags in current content usage:
+  - front_pressure
+  - backline_pressure
+  - speed
+  - stall
+  - armor
+  - support
+  - support_fire
+  - disruption
+  - pull
+  - line_break
+  - splash
+  - siege
+  - buff_aura
+  - formation
+  - mobility
+  - evasion
+  - line_swap
+  - summon
+  - snowball
+  - elite_pressure
+  - bind
+  - curse
+  - boss_pressure
+- Established current danger score interpretation for owned content:
+  - 2-3 = early readable pressure
+  - 4-6 = mid-run role pressure
+  - 7-8 = late-run high leverage threat
+  - 9-10 = elite-tier or near-failure pressure
+
+What did not change
+- Did not change shared schema fields from new_data_schema_v1.txt.
+- Did not change WaveData, StageData, RewardTableData, RunStateData, battle flow, stage flow, or UI.
+- Did not define controller logic for move patterns, trait effects, boss phases, or totem execution.
+
+What needs approval
+- If the project wants rank categories promoted from content convention into a global enum/validator shared across threads, head approval is needed.
+- If move_pattern_id, phase_structure ids, or totem effect_tags need hard validation against another shared registry, head approval is needed before changing shared schema or controller boundaries.
+
+What should go to another thread
+- Wave thread should decide how stages/waves reference these pool, boss, and totem ids.
+- Balance thread should tune reward linkage and confirm the danger_score scale against risk/reward tables.
+- Debug thread can add validation tooling once data loading paths exist.

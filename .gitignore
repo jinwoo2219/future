@@ -15,3 +15,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+/android/
+
+/다운로드/
+
+.DS_Store

@@ -1,0 +1,300 @@
+New Project Data Schema V1.1
+
+1. Purpose
+- This document defines the approved baseline data schema for the new project.
+- The goal is to keep content data-driven, reusable, and easy to expand during vertical-slice production.
+- Feature threads should treat this file as the current schema baseline when working on data-owned tasks.
+
+2. Core Data Rules
+- Prefer reference-based structures over duplicating full content data in multiple places.
+- Runtime state must stay separate from source content data.
+- Reusable effects should be expressed through tags, keywords, targeting types, categories, or structured values.
+- Do not hardcode content into controller logic if it can be represented by data.
+- If a schema change affects multiple thread scopes, request head approval first.
+
+3. Value Format Rule
+- The following fields are intentionally flexible but must follow one consistent structure per data type:
+  - values
+  - rarity_chances
+  - special_rules
+- Recommended baseline:
+  - values: key-value mapping for numeric or scalar effect data
+  - rarity_chances: key-value mapping by rarity id
+  - special_rules: reusable rule ids, tags, or structured rule entries
+- Do not let these become random freeform text blobs.
+
+4. Reference Rule
+- Use ids to connect data whenever possible.
+- Example:
+  - StageData references wave_ids
+  - StageData references enemy_choice_set_id
+  - StageData references enemy_pool_ids when needed
+  - StageData references reward_table_id
+  - StageData references boss_id
+- Runtime state should store current selected ids rather than duplicated full data entries.
+
+5. Approved Schema List
+
+5-1. SkillData
+- Purpose:
+  - Defines an equipped cooldown-based player skill.
+- Fields:
+  - id
+  - name
+  - rarity
+  - category
+  - targeting_type
+  - effect_key
+  - cooldown
+  - values
+  - special
+  - keywords
+  - description
+  - icon
+- Notes:
+  - rarity is currently expected to support:
+    - common
+    - rare
+    - epic
+    - elite
+  - category is currently expected to support:
+    - damage (D)
+    - control (C)
+    - utility (U)
+  - targeting_type should come from the approved shared targeting-type list, not from ad-hoc per-card wording.
+  - rarity and category may expand later, so do not hardcode the schema as permanently closed.
+  - effect_key should identify which shared battle-effect resolver path this card uses.
+  - values should hold the main numeric card values.
+  - cooldown is a core card field, not optional flavor data.
+  - special stores the card's special ability summary or special rule hook.
+  - targeting_type should use reusable labels, not one-off rule text.
+  - keywords should be added only when shared across multiple skills or systems.
+
+5-2. EnemyData
+- Purpose:
+  - Defines one enemy type and its reusable combat identity.
+- Fields:
+  - id
+  - name
+  - color
+  - initial
+  - rank
+  - category
+  - hp
+  - attack
+  - move_pattern_id
+  - traits
+  - danger_score
+  - keywords
+  - description
+  - icon
+- Notes:
+  - category should come from the approved shared enemy role list.
+  - move_pattern should be stored as a reusable pattern id, not loose text.
+  - attack defines how much player life is lost when the enemy reaches the goal unless a rule explicitly overrides it.
+  - danger_score is used for risk/reward evaluation and probability guidance.
+  - enemies should represent role pressure, not just HP targets.
+
+5-3. EnemyPoolData
+- Purpose:
+  - Defines a clearly separated enemy pool used for act-based or rank-based enemy grouping.
+- Fields:
+  - id
+  - act
+  - pool_type
+  - enemy_ids
+  - notes
+- Notes:
+  - This exists to keep the following groups clearly separated:
+    - act 1 base enemy list
+    - act 2 added enemy list
+    - act 3 added enemy list
+    - elite enemy list
+  - Recommended pool_type examples:
+    - act_1_base
+    - act_2_added
+    - act_3_added
+    - elite_pool
+  - This schema should be used when the project needs to distinguish long-term pool membership from temporary stage-select additions.
+
+5-4. WaveData
+  - Purpose:
+    - Defines the actual enemy composition and special rules for one battle wave.
+  - Fields:
+    - id
+    - wave_type
+    - rows
+    - turn_limit
+    - is_final_wave
+    - guaranteed_enemy_ids
+    - blocked_enemy_ids
+    - special_rules
+    - preview_text
+  - Notes:
+    - rows should define the prepared row-by-row enemy composition used in battle.
+    - final waves should have no turn limit by default.
+    - wave_type should come from the approved shared wave-type list.
+    - reward logic should not live here by default.
+    - use this for combat content, not stage-selection choice presentation.
+
+5-5. StageData
+- Purpose:
+  - Defines one stage as a higher-level progression node.
+- Fields:
+  - id
+  - act
+  - stage_index
+  - enemy_pool_ids
+  - wave_ids
+  - enemy_choice_set_id
+  - active_totem_id
+  - reward_table_id
+  - boss_id
+  - next_stage_ids
+- Notes:
+  - StageData should mainly reference other data, not duplicate it.
+  - enemy_pool_ids can be used when the stage needs to declare which long-term enemy pools are active.
+  - next_stage_ids supports the branching stage-select structure.
+  - If the stage is not a boss stage, boss_id may be empty.
+
+5-6. BossData
+- Purpose:
+  - Defines one boss and its phase identity.
+- Fields:
+  - id
+  - name
+  - phase_structure
+  - traits
+  - keywords
+  - description
+  - icon
+- Notes:
+  - phase_structure should be consistent and reusable where possible.
+  - boss presentation and boss logic should still be separated from UI-only concerns.
+
+5-7. RelicData
+- Purpose:
+  - Defines a long-term growth relic.
+- Fields:
+  - id
+  - name
+  - rarity
+  - category
+  - effect_tags
+  - values
+  - description
+  - icon
+- Notes:
+  - relics should reinforce a build direction, not replace the core loop.
+  - prefer modular effects and avoid one-off hidden code paths.
+
+5-8. RewardTableData
+- Purpose:
+  - Defines card rarity probability by risk score range.
+- Fields:
+  - id
+  - risk_score_range
+  - rarity_chances
+  - notes
+- Notes:
+  - rarity_chances should support current and future rarity tiers.
+  - Do not lock the schema to only common / rare / epic if expansion is likely.
+
+5-9. EnemyChoiceSetData
+- Purpose:
+  - Defines the stage-select choice package shown before entering a stage.
+- Fields:
+  - id
+  - normal_options
+  - elite_options
+  - special_rules
+  - risk_delta
+  - reward_modifier
+- Notes:
+  - This data supports stage-select presentation and strategic choice.
+  - It should not directly replace WaveData.
+  - It should not replace EnemyPoolData either.
+  - Use it to describe selectable enemy additions and their risk direction.
+
+5-10. TotemData
+- Purpose:
+  - Defines a totem-type pressure source or field effect source.
+- Fields:
+  - id
+  - name
+  - range_type
+  - range_size
+  - effect_tags
+  - values
+  - description
+  - icon
+- Notes:
+  - Totem behavior should be described through effect tags and values when possible.
+  - range_type and range_size should remain reusable and readable.
+
+5-11. RunStateData
+- Purpose:
+  - Tracks the current run progress and owned runtime state.
+- Fields:
+  - act
+  - stage
+  - current_stage_id
+  - current_wave_index
+  - current_enemy_pool
+  - current_totem_id
+  - current_reward_table_id
+  - selected_stage_option
+  - pending_enemy_choices
+  - owned_skills
+  - equipped_skills
+  - spare_skills
+  - owned_relics
+  - life
+  - energy_used
+- Notes:
+  - This is runtime state, not source content.
+  - Keep it separate from base content resources.
+  - Use ids and current references instead of duplicating full data definitions.
+
+6. Ownership Guide
+- Card Data thread:
+  - SkillData baseline
+  - targeting_type labels
+  - keyword usage on skills
+- Enemy Data thread:
+  - EnemyData
+  - EnemyPoolData
+  - BossData
+  - TotemData
+  - danger_score usage
+- Wave thread:
+  - WaveData usage in flow
+  - StageData hookup to battle flow
+  - stage progression references
+- Relic Data thread:
+  - RelicData baseline
+- Balance thread:
+  - RewardTableData recommendations
+  - risk_score_range tuning
+  - danger_score and reward relationship findings
+- Head thread:
+  - cross-schema changes
+  - reference model approval
+  - shared value format approval
+
+7. Current Approval Status
+- Approved as schema baseline v1.1 for early production.
+- Further changes are allowed, but shared-field changes require careful review once implementation starts.
+
+8. Default Worker Reading Suggestion
+- Read this file when a task affects:
+  - data resource schema
+  - cross-data references
+  - risk/reward data connection
+  - runtime state structure
+
+9. Default Report Reminder
+- What I changed
+- What I did not change
+- What needs approval
+- What should go to another thread

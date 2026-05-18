@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/relic_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"sharpness"
+name = "Sharpness"
+source = &"normal"
+description = "Damage below 10 becomes 10."

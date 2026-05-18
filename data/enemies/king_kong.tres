@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"king_kong"
+name = "King Kong"
+color = &"brown"
+initial = "K"
+rank = &"normal"
+category = &"frontline"
+hp = 80
+attack = 3
+move_pattern_id = &"king_kong_launch"
+traits = Array[StringName]([])
+danger_score = 9
+keywords = PackedStringArray("King Kong", "Throw")
+description = "Moves every 2 turns. After a successful move, throws a minion 2 rows ahead."

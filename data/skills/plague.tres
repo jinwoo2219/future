@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"plague"
+name = "Plague"
+rarity = &"epic"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"plague"
+cooldown = 4
+values = {
+"plague_damage": 3
+}
+keywords = PackedStringArray("effect_plague")
+description = "Plague 3."
+detail_description = "Infect the target for 3. At turn start, infection spreads orthogonally to uninfected enemies. At turn end, infected enemies take their current plague damage, then that damage increases by 3."

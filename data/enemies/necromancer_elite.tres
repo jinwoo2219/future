@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"necromancer_elite"
+name = "Necromancer"
+color = &"sage_gray"
+initial = "NC"
+rank = &"elite"
+category = &"elite"
+hp = 65
+attack = 7
+move_pattern_id = &"hold_then_move"
+traits = Array[StringName]([&"necromancy_aura"])
+danger_score = 1
+keywords = PackedStringArray("Elite")
+description = "Dead enemies revive with 10 HP."

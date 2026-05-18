@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"backshot"
+name = "Backshot"
+rarity = &"common"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"back_shot"
+cooldown = 2
+values = {
+"damage": 5,
+"rear_damage": 20
+}
+keywords = PackedStringArray("effect_backshot")
+description = "Rear target 20. If none, 5."
+detail_description = "If the chosen lane has a rear enemy, hit that rear enemy for 20. Otherwise hit the front enemy for 5."

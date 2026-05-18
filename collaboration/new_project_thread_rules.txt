@@ -1,0 +1,164 @@
+New Project Thread Rules
+
+1. Purpose
+- This document defines the working rules for the new prototype / successor project.
+- The goal is to keep the project fast to develop, easy to expand, and safe to scale across multiple threads.
+- These rules exist to prevent role overlap, unnecessary context reading, and expensive rewrites later.
+
+2. Core Principle
+- Build the project around the real game genre first.
+- The project is a turn-based defense game.
+- Every thread should protect:
+  - clear line-based combat
+  - meaningful enemy pressure
+  - limited but meaningful player actions
+  - visible growth and stage progression
+
+3. Head Rule
+- The head thread owns:
+  - project baseline decisions
+  - folder / scene / data structure approval
+  - cross-scope approval
+  - final integration judgment
+- Feature threads must not silently redefine the baseline on their own.
+
+4. Thread Ownership
+- Wave / Battle Flow thread owns:
+  - turn flow
+  - battle flow
+  - enemy movement timing
+  - wave / stage progression
+  - reward-entry timing
+  - boss-entry timing
+- UI thread owns:
+  - layout
+  - UI flow
+  - screen structure
+  - visual readability
+- Card Data thread owns:
+  - skill data format
+  - skill categories
+  - skill rarity structure
+  - card keyword connection
+- Enemy Data thread owns:
+  - enemy data format
+  - enemy rank categories
+  - enemy trait tags
+  - danger score values
+- Relic Data thread owns:
+  - relic data format
+  - relic categories
+  - relic effect tags
+- Balance thread owns:
+  - risk / reward judgment
+  - numeric recommendations
+  - probability table suggestions
+  - test findings
+- Debug thread owns:
+  - reproduction
+  - root-cause narrowing
+  - safe fix-scope recommendation
+
+5. Shared-File Rule
+- Shared files must not be changed casually.
+- If a task requires touching a shared file outside thread ownership, the worker must report it clearly and request head approval first.
+- Protected decisions include:
+  - scene structure
+  - manager responsibility boundaries
+  - data resource schema
+  - signal flow rules
+  - baseline targeting rules
+  - tile occupancy ordering rules
+
+6. Read Scope Rule
+- Threads must not read the full project context by default.
+- Each worker should read only:
+  - its own thread-context file
+  - its own recent-context file
+  - system_recent.txt when needed
+- Do not read the full work log, full baseline file, or other thread notes unless the task truly requires it.
+
+7. Logging Rule
+- Feature threads should update their own recent-context file by default.
+- Feature threads should not update work_log.txt unless the head explicitly asks for it.
+- work_log.txt is reserved mainly for:
+  - head summaries
+  - approval records
+  - major baseline changes
+  - cross-scope structural changes
+
+8. Data-First Rule
+- New skills, enemies, relics, waves, bosses, and rewards must be added through data structures whenever possible.
+- Adding content should become:
+  - add or edit one data entry
+  not
+  - patch several unrelated scripts
+- Hardcoding content directly into controller logic should be avoided unless the head explicitly approves a temporary shortcut.
+
+9. Logic / Presentation Separation
+- Battle logic must stay separate from presentation.
+- Rules, calculations, movement resolution, cooldown updates, reward flow, and stage progression are logic.
+- Visual effects, highlights, sound hooks, and animations are presentation.
+- Threads must not mix these two layers unless the task explicitly requires a hookup point.
+
+10. UI Signal Rule
+- UI sends signals.
+- UI does not make battle decisions.
+- Examples:
+  - skill selected
+  - column selected
+  - reward choice clicked
+  - energy button clicked
+- Actual rule judgment belongs to the controller layer.
+
+11. Keyword Rule
+- Keywords must be added carefully.
+- A new keyword is allowed only when:
+  - it will be reused
+  - it defines a shared rule
+  - it improves clarity more than a normal description line would
+- One-off mechanics should stay as data text or local effect definitions instead of becoming global keywords.
+
+12. Stage / Growth Rule
+- Stage progression and growth must remain visibly separated.
+- Stage clear should feel like a new phase.
+- Reward timing, enemy-choice timing, and boss-entry timing should reinforce that separation.
+- Threads should not reintroduce invisible or repetitive progression loops that blur growth feedback.
+
+13. Prototype Development Rule
+- Early development should prioritize a vertical slice.
+- The first major milestone is:
+  - one full Act playable from start to boss without breaking flow
+- Threads should not overbuild later-stage systems before the first full slice works.
+
+14. Temporary Shortcut Rule
+- Temporary shortcuts are allowed only when:
+  - they help verify the core loop faster
+  - they are clearly reported
+  - they do not lock the project into a bad structure
+- Temporary code must be easy to replace later.
+
+15. Completion Report Format
+- Every worker should report in this format:
+  - What I changed
+  - What I did not change
+  - What needs approval
+  - What should go to another thread
+
+16. Main Goal
+- The project should be easy to grow after the core loop is proven fun.
+- Every thread should work in a way that makes:
+  - adding content easy
+  - balancing content easy
+  - testing changes easy
+  - replacing temporary parts easy
+
+17. Tile Occupancy Rule
+- Battle tiles may contain more than one enemy.
+- Tile occupant order must remain readable and stable because frontmost enemy targeting depends on it.
+- Approved insertion rule:
+  - if an enemy enters from the front, insert it at the front of the tile occupant order
+  - if an enemy enters from the back, insert it at the back of the tile occupant order
+  - if an enemy enters from a side lane, insert it at the back of the tile occupant order
+- The default attack rule continues to target the frontmost enemy in the chosen lane unless another rule overrides it.
+- Threads must not redefine this ordering casually without head approval.

@@ -1,0 +1,123 @@
+New Enemy Template V1
+
+1. Purpose
+- This template defines the head-approved baseline format for enemy creation in the new project.
+- New enemies should be written against this template before detailed gimmick implementation begins.
+- The goal is to keep role, pressure, and board behavior readable before adding polish.
+
+2. Core Rule
+- An enemy is not just an HP target.
+- Each enemy should create a clear pressure role in lane-based downward combat.
+- The player should be able to understand:
+  - what this enemy threatens
+  - how quickly it becomes urgent
+  - why it is different from other enemies
+
+3. Required Enemy Fields
+- id
+- name
+- rank
+- category
+- hp
+- attack
+- move_pattern_id
+- traits
+- danger_score
+- keywords
+- description
+- icon
+
+4. Role Writing Format
+- Combat Role:
+  - what problem this enemy creates on the board
+- Pressure Timing:
+  - early / mid / late pressure
+- Movement Identity:
+  - how it approaches the player line
+- Targeting Identity:
+  - whether it should become front pressure, side pressure, or support pressure
+- Counterplay:
+  - what kind of player response should work well against it
+
+5. Baseline Combat Interpretation
+- hp:
+  - how hard it is to remove
+- attack:
+  - how much player life is lost if it reaches the goal
+- move_pattern_id:
+  - reusable movement pattern id, not freeform text
+- traits:
+  - reusable role tags
+- danger_score:
+  - used for stage risk and reward guidance
+
+5-1. Category Rule
+- category should use the approved shared enemy role list.
+- Current baseline categories:
+  - frontline
+  - runner
+  - tank
+  - disruptor
+  - support
+  - artillery
+  - summoner
+  - totem
+  - boss
+
+5-2. Movement Rule
+- move_pattern_id should use the approved shared movement list.
+- Current baseline movement ids:
+  - straight_1
+  - straight_2
+  - side_shift
+  - hold_then_move
+  - static_support
+
+6. Movement / Lane Notes
+- The game reads enemy pressure from top to bottom.
+- Front means closer to the player, not higher on the board.
+- If multiple enemies share one tile:
+  - front entry goes to the front
+  - back entry goes to the back
+  - side-lane entry goes to the back
+- During normal downward movement, enemies should preserve the front/back order they already had in the previous tile.
+
+7. First-Pass Enemy Creation Rule
+- First pass should define:
+  - role
+  - hp
+  - attack
+  - movement identity
+  - danger score
+- Do not overbuild gimmicks before the core loop proves readable.
+
+8. Recommended Enemy Writeup Form
+- Name:
+- Rank:
+- Category:
+- HP:
+- Attack:
+- Move Pattern:
+- Traits:
+- Danger Score:
+- Keywords:
+- Combat Role:
+- Pressure Timing:
+- Counterplay:
+- Short Description:
+
+9. Starter Reference Set
+- Basic:
+  - simple baseline pressure enemy
+- Speeder:
+  - lower HP, faster arrival pressure
+- Tank:
+  - higher HP, heavier breach threat
+
+10. Approval Note
+- This template is the current head-approved baseline for enemy-definition work.
+- Enemy Data thread should use this together with new_data_schema_v1.txt.
+
+11. Shared Reuse Rule
+- Reuse existing category, move_pattern_id, trait, and keyword values first.
+- Only propose a new shared identifier when the enemy cannot be expressed cleanly with the current shared baseline.

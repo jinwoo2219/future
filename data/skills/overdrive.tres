@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"overdrive"
+name = "Overdrive"
+rarity = &"rare"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"gain_action"
+cooldown = 3
+consumes_action = false
+values = {
+"extra_actions": 1
+}
+keywords = PackedStringArray("effect_gain_action")
+description = "+1 action this turn. Free."
+detail_description = "Gain 1 action this turn. This card does not spend an action."

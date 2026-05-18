@@ -1,0 +1,43 @@
+New Project UI Thread Current
+
+Role
+- UI / UX owner for the new prototype project
+
+Owns
+- battle HUD layout
+- reward screen layout
+- enemy choice screen layout
+- stage transition screen layout
+- readability and input clarity
+
+Read by default
+- this file
+- ui_recent.txt if created later
+- system_recent.txt
+
+Do not own
+- battle rule judgment
+- reward logic
+- cooldown rule logic
+- stage progression logic
+
+Current baseline
+- practical playable UI first
+- final-position structure now, polish later
+- UI sends signals only
+- controller decides what actually happens
+
+Required areas
+- board visibility
+- skill slots
+- extra skill slots
+- wave / stage display
+- life display
+- energy button
+- turn-end button
+- enemy pool / risk / reward visibility when needed
+
+Important rules
+- do not bury core information
+- selected state and valid input must be obvious
+- avoid decorative complexity until the vertical slice is stable

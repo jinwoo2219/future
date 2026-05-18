@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"rapid_turret"
+name = "Rapid Turret"
+rarity = &"epic"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_rapid_turret"
+cooldown = 4
+values = {
+"attack": 2,
+"hp": 4,
+"shots": 3
+}
+keywords = PackedStringArray("Install")
+description = "2 x3. Retarget on kill."
+detail_description = "Install a 4 HP turret. Each structure turn, it fires 3 shots of 2 damage at its lane. Kills retarget the next shot forward in the same lane."

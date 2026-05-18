@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"blood_blade"
+name = "Blood Blade"
+rarity = &"rare"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"blood_blade"
+cooldown = 2
+values = {
+"damage": 10,
+"lost_life_multiplier": 3
+}
+keywords = PackedStringArray("Damage")
+description = "10 + lost life x3."
+detail_description = "Deal 10 damage plus 3 for each missing life. Missing life is calculated from your current max life."

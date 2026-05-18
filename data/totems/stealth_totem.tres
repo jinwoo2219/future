@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TotemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/totem_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"stealth_totem"
+name = "Stealth Totem"
+short = "ST"
+range_type = &"row"
+effect_key = &"grant_stealth"
+values = {}
+keywords = PackedStringArray("Totem", "Stealth", "Row")
+description = "Same row stealth."
+detail_description = "Enemies in the totem's row gain stealth while they remain in range."
+color = Color(0.18, 0.24, 0.62, 1)

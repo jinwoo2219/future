@@ -1,0 +1,53 @@
+New Project Wave Thread Current
+
+Role
+- Battle / Wave Flow owner
+
+Owns
+- turn flow
+- action flow
+- enemy movement timing
+- wave progression
+- wave categorization
+- wave rule-slot ownership
+- stage progression
+- reward-entry timing
+- boss-entry timing
+
+Read by default
+- this file
+- wave_recent.txt if created later
+- system_recent.txt
+
+Do not own
+- UI layout decisions
+- card data format
+- enemy data schema
+- relic data schema
+
+Current baseline
+- 3 x 6 board
+- enemies move top to bottom
+- player chooses a line / column
+- default hit rule: frontmost enemy in chosen line
+- battle tiles may contain more than one enemy
+- the current implemented wave system is the default wave baseline
+- tile insertion order:
+  - front entry -> insert at front
+  - back entry -> insert at back
+  - side-lane entry -> insert at back
+- actions per turn: 2
+- no discard / recovery loop
+- cooldown-based skill use
+
+Current milestone
+- one full playable act / vertical slice
+- flow must work from battle start to stage clear to reward to next stage
+
+Important rules
+- wave logic decides timing, not UI
+- do not hardcode content that should live in data later
+- keep battle logic and presentation separate
+- tile occupancy ordering is part of battle / wave flow ownership unless head reassigns it
+- reuse approved wave types first
+- final wave is clear-focused and has no turn limit by default

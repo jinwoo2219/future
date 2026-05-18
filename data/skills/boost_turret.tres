@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"boost_turret"
+name = "Boost Turret"
+rarity = &"rare"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_boost_turret"
+cooldown = 2
+values = {
+"bonus_damage": 5,
+"hp": 1,
+"max_stacks": 3
+}
+keywords = PackedStringArray("effect_install_boost_turret")
+description = "Turret +5. Stack 3."
+detail_description = "Install a 1 HP support structure. All turrets gain +5 damage while it exists. Up to 3 can stack in one tile."

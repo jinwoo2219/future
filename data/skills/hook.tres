@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"hook"
+name = "Hook"
+rarity = &"rare"
+category = &"control"
+targeting_type = &"pending_pull_forward"
+effect_key = &"pull_forward"
+cooldown = 0
+values = {}
+keywords = PackedStringArray("effect_pull_forward")
+description = "Choose a front row."
+detail_description = "After choosing a lane, choose a front-row destination tile. Pull the target into that tile."

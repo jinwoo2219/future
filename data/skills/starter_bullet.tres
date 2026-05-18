@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"bullet"
+name = "Bullet"
+rarity = &"common"
+category = &"attack"
+targeting_type = &"chosen_lane_front_enemy"
+effect_key = &"bullet"
+cooldown = 2
+values = {
+"damage": 12
+}
+keywords = PackedStringArray("projectile", "effect_bullet")
+description = "12 damage."

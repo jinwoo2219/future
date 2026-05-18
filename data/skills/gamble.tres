@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"gamble"
+name = "Gamble"
+rarity = &"common"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"gamble"
+cooldown = 0
+values = {}
+keywords = PackedStringArray("Utility")
+description = "Become a random damage card."
+detail_description = "Transform this card into a random damage card for the rest of the stage. It uses the new card's cooldown and behavior."

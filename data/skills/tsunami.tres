@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"tsunami"
+name = "Tsunami"
+rarity = &"epic"
+category = &"control"
+targeting_type = &"self_state"
+effect_key = &"tsunami"
+cooldown = 4
+values = {}
+keywords = PackedStringArray("effect_tsunami")
+description = "All enemies back 1."
+detail_description = "Move every enemy back by 1 row."

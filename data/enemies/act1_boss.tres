@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"act1_boss"
+name = "Rocket"
+color = &"red"
+initial = "RKT"
+rank = &"boss"
+category = &"boss"
+hp = 120
+attack = 0
+move_pattern_id = &"rocket_boss_anchor"
+traits = Array[StringName]([&"wide_top_3", &"control_immune"])
+danger_score = 99
+keywords = PackedStringArray("Boss")
+description = "Occupies the entire top row and spawns deck enemies on row 3."

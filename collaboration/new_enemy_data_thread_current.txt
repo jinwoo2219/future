@@ -1,0 +1,37 @@
+New Project Enemy Data Thread Current
+
+Role
+- Enemy data owner
+
+Owns
+- EnemyData structure
+- enemy rank structure
+- normal / elite / totem / boss categories
+- enemy role category reuse judgment
+- move_pattern_id reuse judgment
+- enemy trait tags
+- danger score values
+- enemy description standard
+
+Read by default
+- this file
+- enemy_recent.txt if created later
+- system_recent.txt
+
+Do not own
+- battle UI
+- wave timing logic
+- relic structure
+- card schema
+
+Current baseline
+- enemies are problem definitions, not just HP targets
+- enemy choices feed a visible enemy pool
+- later acts raise difficulty through role pressure more than raw HP alone
+
+Important rules
+- define enemy roles clearly
+- reuse existing role categories and move_pattern_id values first
+- only request new shared enemy identifiers when current shared structure cannot express the enemy cleanly
+- avoid one-off hardcoded enemy behavior if a reusable tag/effect can do the job
+- keep elite and totem pools distinct from normal enemy pool management

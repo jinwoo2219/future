@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/archer/south.png" id="2_archer_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"archer"
+name = "Archer"
+color = &"dark_pink"
+initial = "A"
+rank = &"normal"
+category = &"ranged"
+hp = 25
+attack = 1
+move_pattern_id = &"archer_fire_line"
+traits = Array[StringName]([])
+danger_score = 4
+keywords = PackedStringArray("Archer", "Ranged")
+icon = ExtResource("2_archer_icon")
+description = "Advances until row 4, then stops and deals 1 damage to the core each turn with a projectile."

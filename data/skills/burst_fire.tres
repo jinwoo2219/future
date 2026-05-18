@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"burst_fire"
+name = "Burst Fire"
+rarity = &"common"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"burst_fire"
+cooldown = 2
+values = {
+"damage": 4,
+"hit_count": 3
+}
+keywords = PackedStringArray("Damage")
+description = "4 x3. Retarget on kill."
+detail_description = "Fire 3 shots of 4 damage. If a shot kills its target, the next shot retargets the new front enemy in that lane."

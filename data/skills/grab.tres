@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"grab"
+name = "Grab"
+rarity = &"rare"
+category = &"control"
+targeting_type = &"lane_front"
+effect_key = &"grab"
+cooldown = 2
+values = {}
+keywords = PackedStringArray("Control")
+description = "Rear to front."
+detail_description = "Pull the rearmost enemy in the chosen lane to the front of the foremost occupied tile in that lane."

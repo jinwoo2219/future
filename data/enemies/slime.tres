@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/slime/ram.png" id="2_slime_ram_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"slime"
+name = "Slime"
+color = &"dark_green"
+initial = "Sl"
+rank = &"normal"
+category = &"splitter"
+hp = 40
+attack = 3
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([&"split_on_death"])
+danger_score = 4
+keywords = PackedStringArray("Slime", "Split")
+icon = ExtResource("2_slime_ram_icon")
+description = "On death, split into 2 weaker 20 HP slimes in the same tile."

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TotemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/totem_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"regen_totem"
+name = "Regen Totem"
+short = "RG"
+range_type = &"square_3"
+effect_key = &"regen_5"
+values = {
+"heal": 5
+}
+keywords = PackedStringArray("Totem", "Regen", "3x3")
+description = "3x3 heal 5."
+detail_description = "Enemies in the totem's 3x3 range recover 5 HP at the start of each enemy turn."
+color = Color(0.12, 0.42, 0.18, 1)

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"pull"
+name = "Pull"
+rarity = &"common"
+category = &"control"
+targeting_type = &"lane_front"
+effect_key = &"pull"
+cooldown = 2
+values = {}
+keywords = PackedStringArray("pull", "effect_pull")
+description = "Pull side fronts into target tile."
+detail_description = "Pull front enemies from the left and right adjacent lanes into the chosen target tile."

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/healer/south.png" id="2_healer_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"healer"
+name = "Healer"
+color = &"light_gray"
+initial = "H"
+rank = &"normal"
+category = &"support"
+hp = 25
+attack = 2
+move_pattern_id = &"hold_then_move"
+traits = Array[StringName]([&"heal_front_ally"])
+danger_score = 4
+keywords = PackedStringArray("Healer", "Heal")
+icon = ExtResource("2_healer_icon")
+description = "At the start of its turn, heal the frontmost ally in the same lane by 10. Cannot heal itself."

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"death_echo"
+name = "Death Echo"
+color = &"brown"
+initial = "DE"
+rank = &"normal"
+category = &"frontline"
+hp = 30
+attack = 2
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([&"advance_others_on_death"])
+danger_score = 7
+keywords = PackedStringArray("Death", "Advance")
+description = "When it dies, all other enemies advance 1 tile."

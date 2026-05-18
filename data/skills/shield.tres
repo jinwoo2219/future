@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"shield"
+name = "Shield"
+rarity = &"common"
+category = &"utility"
+targeting_type = &"tile_structure"
+effect_key = &"grant_structure_shield"
+cooldown = 2
+consumes_action = true
+action_cost = 1
+values = {
+"shield_hits": 1
+}
+keywords = PackedStringArray("Install", "Shield")
+description = "Block 1 hit."
+detail_description = "Choose a structure without a shield. The next hit it would take is prevented."

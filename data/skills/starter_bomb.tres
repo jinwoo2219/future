@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"bomb"
+name = "Bomb"
+rarity = &"common"
+category = &"attack"
+targeting_type = &"chosen_lane_all_enemies"
+effect_key = &"bomb"
+cooldown = 2
+values = {
+"damage": 10
+}
+keywords = PackedStringArray("explosive", "effect_bomb")
+description = "Tile AoE 10."
+detail_description = "Choose a tile and deal 10 damage to every enemy in that tile."

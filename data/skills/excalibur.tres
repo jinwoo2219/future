@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"excalibur"
+name = "Excalibur"
+rarity = &"epic"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"excalibur"
+cooldown = 4
+values = {
+"damage": 15
+}
+keywords = PackedStringArray("effect_column", "effect_execute")
+description = "Lane 15. Full lane: kill."
+detail_description = "Deal 15 damage to all enemies in the selected lane. If every battle tile in that lane contains at least 1 enemy, kill all enemies in that lane instead. Structures do not count."

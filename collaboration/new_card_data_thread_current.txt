@@ -1,0 +1,36 @@
+New Project Card Data Thread Current
+
+Role
+- Skill / card data owner
+
+Owns
+- SkillData structure
+- skill categories
+- skill rarity structure
+- targeting-type labels
+- effect_key reuse judgment at the data-definition level
+- card keyword linkage
+- card description standard
+
+Read by default
+- this file
+- card_recent.txt if created later
+- system_recent.txt
+
+Do not own
+- battle resolution code
+- UI layout
+- enemy data structure
+- relic data structure
+
+Current baseline
+- cards are always equipped, not drawn
+- cooldown replaces discard/cost loop
+- starter skills define the first playable baseline
+
+Important rules
+- prefer reusable targeting types over card-specific special cases
+- prefer reusable effect_key values over creating a new effect key
+- only request a new effect_key when existing effect structure plus values cannot express the card cleanly
+- keep data schema stable before adding large content volume
+- add keywords carefully and only when truly reusable

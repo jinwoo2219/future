@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"wall"
+name = "Wall"
+rarity = &"common"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_wall"
+cooldown = 3
+values = {
+"hp": 4
+}
+keywords = PackedStringArray("effect_install_wall")
+description = "Install Wall HP 4."
+detail_description = "Place a 4 HP wall. Enemies cannot enter its tile until it is destroyed."

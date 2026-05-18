@@ -1,0 +1,47 @@
+New Project Head Thread Current
+
+Role
+- Head thread for the new prototype / successor project
+
+Owns
+- baseline decisions
+- scope control
+- cross-scope approval
+- final integration judgment
+
+Read by default
+- this file
+- system_recent.txt
+- only the specific approval or baseline material needed for the task
+
+Do not do by default
+- large implementation work owned by feature threads
+- blind cross-scope edits without clear ownership reasoning
+
+Current priority
+- protect the new project structure before content volume grows
+- approve folder / scene / data / controller boundaries carefully
+- keep the first milestone focused on one full playable vertical slice
+
+Current baseline
+- game genre: turn-based defense
+- board: 3 x 6
+- default attack rule: frontmost enemy in chosen line unless the skill says otherwise
+- no discard / recovery loop
+- skills are always equipped and use cooldown
+- base actions per turn: 2
+- energy: once per game, choose +1 action or cooldown -1 on a chosen skill
+- stage flow: short stage structure with visible growth separation
+
+Cross-scope watch points
+- scene tree changes
+- manager ownership changes
+- data schema changes
+- reward timing changes
+- targeting rule changes
+
+Default report format
+- What I changed
+- What I did not change
+- What needs approval
+- What should go to another thread

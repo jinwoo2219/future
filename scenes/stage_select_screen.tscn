@@ -1,0 +1,702 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/stage_select_screen.gd" id="1_b7kwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.11, 0.095, 0.07, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.36, 0.2, 0.72)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 10
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.12, 0.11, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.34, 0.44, 0.25, 0.8)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.22)
+shadow_size = 12
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tile"]
+bg_color = Color(0.13, 0.12, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.5, 0.32, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enemy_deck_slot"]
+bg_color = Color(0.173, 0.149, 0.149, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.960784, 0.933333, 0.878431, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skill_stub"]
+bg_color = Color(0.13, 0.2, 0.11, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.68, 0.86, 0.5, 0.82)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choice_button"]
+bg_color = Color(0.12, 0.13, 0.1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.58, 0.32, 0.0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choice_button_hover"]
+bg_color = Color(0.21, 0.27, 0.17, 0.24)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.68, 0.86, 0.5, 0.82)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_meta_chip"]
+bg_color = Color(0.14, 0.18, 0.12, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.72, 0.46, 0.65)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pick_chip"]
+bg_color = Color(0.156863, 0.239216, 0.160784, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.701961, 0.878431, 0.556863, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_button"]
+bg_color = Color(0.14, 0.16, 0.11, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52, 0.62, 0.4, 0.92)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="StageSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7kwi")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.065, 0.05, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Root" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Header" type="HBoxContainer" parent="Margin/Root"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Root/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.89, 0.9, 0.68, 1)
+text = "Stage Select"
+
+[node name="BackButton" type="Button" parent="Margin/Root/Header"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Back"
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_back_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_back_button")
+
+[node name="Body" type="HBoxContainer" parent="Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="LeftSkillColumn" type="VBoxContainer" parent="Margin/Root/Body"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftSkillPanel" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="LeftSkillMargin" type="MarginContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="LeftSkillContent" type="VBoxContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="LeftSkillTitle" type="Label" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.9, 0.92, 0.75, 1)
+text = "Run Loadout"
+horizontal_alignment = 1
+
+[node name="OwnedSkillGrid" type="VBoxContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="OwnedSkillSlot1" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="OwnedSkillSlot2" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="OwnedSkillSlot3" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="OwnedSkillSlot4" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="OwnedSkillSlot5" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="OwnedSkillSlot6" type="PanelContainer" parent="Margin/Root/Body/LeftSkillColumn/LeftSkillPanel/LeftSkillMargin/LeftSkillContent/OwnedSkillGrid"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_skill_stub")
+
+[node name="MapViewport" type="PanelContainer" parent="Margin/Root/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.8
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MapViewportMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MapViewportContent" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="MapHint" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.82, 0.64, 1)
+text = "Choose which enemy enters the deck. Harder decks raise the card reward tier odds."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StageMapArea" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="StageMapPanel" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea"]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="StageMapMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="StageMapContent" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="MapScroll" type="ScrollContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MapRouteContent" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll"]
+custom_minimum_size = Vector2(0, 780)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 22
+
+[node name="RouteHistoryList" type="GridContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 5
+theme_override_constants/h_separation = 18
+theme_override_constants/v_separation = 18
+
+[node name="ChoiceCenter" type="CenterContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ChoiceColumn" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="StageMapTitle" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9, 0.92, 0.75, 1)
+text = "Stage 1"
+horizontal_alignment = 1
+
+[node name="ChoiceRow" type="HBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+theme_override_constants/separation = 22
+
+[node name="Stage1Card" type="Button" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow"]
+custom_minimum_size = Vector2(300, 460)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_choice_button_hover")
+
+[node name="Stage1CardPanel" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Stage1CardMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="Stage1CardContent" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Stage1CardTitle" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.93, 0.94, 0.83, 1)
+text = "Add Enemy A"
+horizontal_alignment = 1
+
+[node name="Stage1BodyRow" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Stage1EnemyIcon" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent/Stage1BodyRow"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tile")
+
+[node name="Stage1DescPanel" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent/Stage1BodyRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Stage1DescMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent/Stage1BodyRow/Stage1DescPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stage1Desc" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent/Stage1BodyRow/Stage1DescPanel/Stage1DescMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.73, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = ""
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+
+[node name="Stage1PickChip" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pick_chip")
+
+[node name="Stage1PickLabel" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card/Stage1CardPanel/Stage1CardMargin/Stage1CardContent/Stage1PickChip"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.95, 0.98, 0.92, 1)
+text = "Pick This Stage"
+horizontal_alignment = 1
+
+[node name="Stage2Card" type="Button" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow"]
+custom_minimum_size = Vector2(300, 460)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_choice_button_hover")
+
+[node name="Stage2CardPanel" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Stage2CardMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="Stage2CardContent" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Stage2CardTitle" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.93, 0.94, 0.83, 1)
+text = "Add Enemy B"
+horizontal_alignment = 1
+
+[node name="Stage2BodyRow" type="VBoxContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Stage2EnemyIcon" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent/Stage2BodyRow"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tile")
+
+[node name="Stage2DescPanel" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent/Stage2BodyRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Stage2DescMargin" type="MarginContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent/Stage2BodyRow/Stage2DescPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stage2Desc" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent/Stage2BodyRow/Stage2DescPanel/Stage2DescMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.73, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = ""
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+
+[node name="Stage2PickChip" type="PanelContainer" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pick_chip")
+
+[node name="Stage2PickLabel" type="Label" parent="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card/Stage2CardPanel/Stage2CardMargin/Stage2CardContent/Stage2PickChip"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.95, 0.98, 0.92, 1)
+text = "Pick This Stage"
+horizontal_alignment = 1
+
+[node name="RightInfoColumn" type="VBoxContainer" parent="Margin/Root/Body"]
+custom_minimum_size = Vector2(258, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/separation = 12
+
+[node name="EnemyDeckPanel" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="EnemyDeckMargin" type="MarginContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EnemyDeckContent" type="VBoxContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EnemyDeckTitle" type="Label" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.92, 0.75, 1)
+text = "Enemy Deck"
+horizontal_alignment = 1
+
+[node name="EnemyDeckGrid" type="GridContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent"]
+layout_mode = 2
+columns = 5
+theme_override_constants/h_separation = 6
+
+[node name="EnemyDeckTile1" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent/EnemyDeckGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile2" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent/EnemyDeckGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile3" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent/EnemyDeckGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile4" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent/EnemyDeckGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile5" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn/EnemyDeckPanel/EnemyDeckMargin/EnemyDeckContent/EnemyDeckGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="DeckInfoPanel" type="PanelContainer" parent="Margin/Root/Body/RightInfoColumn"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="DeckInfoMargin" type="MarginContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="DeckInfoContent" type="VBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="DeckScoreTitle" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.9, 0.92, 0.75, 1)
+text = "Enemy Deck Score"
+horizontal_alignment = 1
+
+[node name="DeckScoreValue" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.87451, 0.960784, 0.894118, 1)
+text = "12"
+horizontal_alignment = 1
+
+[node name="ProbabilityTitle" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.92, 0.75, 1)
+text = "Card Reward Probability"
+horizontal_alignment = 1
+
+[node name="ProbabilityRows" type="VBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="CommonRow" type="HBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="CommonLabel" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/CommonRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Common"
+
+[node name="CommonValue" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/CommonRow"]
+layout_mode = 2
+text = "55%"
+
+[node name="RareRow" type="HBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="RareLabel" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/RareRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rare"
+
+[node name="RareValue" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/RareRow"]
+layout_mode = 2
+text = "30%"
+
+[node name="EpicRow" type="HBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="EpicLabel" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/EpicRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Epic"
+
+[node name="EpicValue" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/EpicRow"]
+layout_mode = 2
+text = "12%"
+
+[node name="LegendaryRow" type="HBoxContainer" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="LegendaryLabel" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/LegendaryRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Elite"
+
+[node name="LegendaryValue" type="Label" parent="Margin/Root/Body/RightInfoColumn/DeckInfoPanel/DeckInfoMargin/DeckInfoContent/ProbabilityRows/LegendaryRow"]
+layout_mode = 2
+text = "3%"
+
+[connection signal="pressed" from="Margin/Root/Header/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage1Card" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="Margin/Root/Body/MapViewport/MapViewportMargin/MapViewportContent/StageMapArea/StageMapPanel/StageMapMargin/StageMapContent/MapScroll/MapRouteContent/ChoiceCenter/ChoiceColumn/ChoiceRow/Stage2Card" to="." method="_on_stage_2_pressed"]

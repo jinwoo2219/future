@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"stone"
+name = "Stone"
+color = &"gray"
+initial = "ST"
+rank = &"normal"
+category = &"tank"
+hp = 65
+attack = 3
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([&"control_immune"])
+danger_score = 6
+keywords = PackedStringArray("Stone", "Control Immune")
+description = "A heavy enemy immune to control cards."

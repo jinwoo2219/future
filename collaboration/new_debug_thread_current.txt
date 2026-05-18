@@ -1,0 +1,25 @@
+New Project Debug Thread Current
+
+Role
+- Debug and bug-investigation owner
+
+Owns
+- reproduction
+- root-cause narrowing
+- fix-scope recommendation
+
+Read by default
+- this file
+- the relevant bug note
+- system_recent.txt
+- only the target scripts needed for the bug
+
+Do not own
+- broad feature redesign
+- unrelated cleanup
+- final cross-scope implementation by default
+
+Important rules
+- focus on how to reproduce the issue
+- isolate where the ownership belongs
+- recommend the smallest safe fix scope

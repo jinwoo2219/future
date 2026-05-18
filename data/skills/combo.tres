@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"combo"
+name = "Current"
+rarity = &"rare"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"combo"
+cooldown = 2
+values = {
+"combo_bonus": 5,
+"damage": 8
+}
+keywords = PackedStringArray("effect_combo")
+description = "Chain 8. +5 per link."
+detail_description = "Start from the chosen lane front enemy. Chain to unhit enemies in the 3x3 area around the last hit target. Damage starts at 8 and increases by 5 each link."

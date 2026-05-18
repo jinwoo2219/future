@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TotemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/totem_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"attack_totem"
+name = "Attack Totem"
+short = "AT"
+range_type = &"column"
+effect_key = &"bonus_attack"
+values = {
+"attack_bonus": 3
+}
+keywords = PackedStringArray("Totem", "Attack", "Column")
+description = "Same column +3 atk."
+detail_description = "Enemies in the totem's column gain +3 attack while they remain in range."
+color = Color(0.92, 0.82, 0.18, 1)

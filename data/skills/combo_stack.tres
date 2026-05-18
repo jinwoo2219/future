@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"combo_stack"
+name = "Combo"
+rarity = &"epic"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"combo_stack"
+cooldown = 0
+values = {
+"damage_per_stack": 3
+}
+keywords = PackedStringArray("Damage")
+description = "Gain 1 stack when other cards are used. Deal 3 per stack, then reset."
+detail_description = "Each time you use a different card, Combo gains 1 stack. When used, it deals 3 damage per stack to the front enemy in the selected lane, then resets its stack to 0. This stack resets when the stage changes."

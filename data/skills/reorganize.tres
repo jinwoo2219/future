@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"reorganize"
+name = "Reorganize"
+rarity = &"rare"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"refresh_damage"
+cooldown = 3
+values = {
+"cooldown_reduction": 1
+}
+keywords = PackedStringArray("effect_refresh_damage")
+description = "Damage cards CD -1."
+detail_description = "Reduce the current cooldown of all damage cards by 1."

@@ -1,0 +1,36 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "39d39f96-dc00-4593-9727-69009b32508f",
+        "name": "64x64 pixel art game enemy sprite, low top-down view, stylized cosmic scavenger alien from a Cthulhu-like species, tentacled lower face, worn cracked helmet, patched gray space suit, scrap metal shoulder guard, rusty orange accents, narrow glowing visor, small clawed hands, carrying a scavenged tool weapon, mischievous hostile pose, readable compact silhouette, thick outline, limited palette, transparent background, no text, no UI, no gore, no realistic horror  Designed for a 3-lane sci-fi defense game UI, 64x64 pixel art sprite, low top-down view, cartoon proportions, compact full-body enemy, clear readable silhouette at small size, thick dark outline, limited palette, slightly humorous cosmic scavenger theme, consistent retro tactical card game enemy design, centered, transparent background, no text, no UI, no shadow",
+        "prompt": "64x64 pixel art game enemy sprite, low top-down view, stylized cosmic scavenger alien from a Cthulhu-like species, tentacled lower face, worn cracked helmet, patched gray space suit, scrap metal shoulder guard, rusty orange accents, narrow glowing visor, small clawed hands, carrying a scavenged tool weapon, mischievous hostile pose, readable compact silhouette, thick outline, limited palette, transparent background, no text, no UI, no gore, no realistic horror  Designed for a 3-lane sci-fi defense game UI, 64x64 pixel art sprite, low top-down view, cartoon proportions, compact full-body enemy, clear readable silhouette at small size, thick dark outline, limited palette, slightly humorous cosmic scavenger theme, consistent retro tactical card game enemy design, centered, transparent background, no text, no UI, no shadow",
+        "size": {
+          "width": 92,
+          "height": 92
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-05-12T13:06:13.247305+00:00"
+      },
+      "folder": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie",
+      "frames": {
+        "rotations": {
+          "south": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south.png",
+          "south-east": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south-east.png",
+          "east": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/east.png",
+          "north-east": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/north-east.png",
+          "north": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/north.png",
+          "north-west": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/north-west.png",
+          "west": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/west.png",
+          "south-west": "states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.0",
+  "export_date": "2026-05-12T13:08:50.780079"
+}

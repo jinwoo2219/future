@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"mine"
+name = "Mine"
+rarity = &"common"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_mine"
+cooldown = 1
+values = {
+"attack": 9,
+"hp": 1,
+"max_stacks": 99
+}
+keywords = PackedStringArray("Install", "Mine")
+description = "Tile 9 on entry."
+detail_description = "Place mines on any empty tile, or add a stack to an existing mine tile. When an enemy enters that tile, the mines explode and damage all enemies there."

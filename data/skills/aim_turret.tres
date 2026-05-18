@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"aim_turret"
+name = "Aim Turret"
+rarity = &"rare"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_aim_turret"
+cooldown = 3
+values = {
+"attack": 8,
+"focus_bonus": 3,
+"hp": 2
+}
+keywords = PackedStringArray("effect_install_aim_turret")
+description = "Front 1. Same target +3."
+detail_description = "Install a 2 HP turret. Each structure turn, it attacks the front enemy in its lane. If it hits the same enemy again next turn, damage increases by 3 each time."

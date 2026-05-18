@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"forecast"
+name = "Forecast"
+rarity = &"rare"
+category = &"damage"
+targeting_type = &"tile_any"
+effect_key = &"forecast"
+cooldown = 3
+values = {
+"damage": 30,
+"delay_turns": 3
+}
+keywords = PackedStringArray("effect_forecast")
+description = "30 after 3 turns."
+detail_description = "Choose any tile. After 3 turn cycles, that tile explodes and deals 30 damage to all enemies in it."

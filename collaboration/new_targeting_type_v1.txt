@@ -1,0 +1,41 @@
+New Targeting Type V1
+
+1. Purpose
+- This document defines the head-approved targeting-type baseline for player cards.
+- Most card input should be lane-based by default.
+
+2. Core Input Rule
+- Standard input unit:
+  - lane
+- Tile-based input is an exception and should be justified by the card design.
+
+3. Approved Targeting Types
+- lane_front
+  - targets the frontmost enemy in the selected lane
+- lane_front_tile
+  - targets the tile occupied by the frontmost enemy in the selected lane
+- lane_all
+  - affects every valid enemy in the selected lane
+- lane_choice
+  - player selects a lane and the card resolves by its own rule
+- lane_front_push_side
+  - targets the frontmost enemy in the selected lane, then chooses a left or right lane result
+- self_state
+  - affects player/core state rather than an enemy target
+- global_rule
+  - affects the whole board or whole turn state
+
+4. Current Starter Mapping
+- Bullet:
+  - lane_front
+- Bomb:
+  - lane_front_tile
+- Push:
+  - lane_front_push_side
+
+5. Design Rule
+- If a new card can reasonably be expressed with an existing targeting_type, reuse it.
+- Do not create one-off targeting labels for single cards unless that targeting structure will clearly recur.
+
+6. Approval Note
+- This is the current head-approved targeting baseline for card work.

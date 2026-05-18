@@ -1,0 +1,62 @@
+New Enemy Role System V1
+
+1. Purpose
+- This document defines the head-approved enemy role and movement baseline for the new project.
+- New enemies should use these shared categories before unique gimmicks are added.
+
+2. Enemy Role Categories
+- frontline
+  - standard lane pressure that wants to reach the player directly
+- runner
+  - lower durability, faster arrival pressure
+- tank
+  - higher durability, heavier breach threat
+- disruptor
+  - changes lane shape, pushes, pulls, or interferes with formation
+- support
+  - buffs, protects, or improves other enemies rather than being the main body itself
+- artillery
+  - creates delayed pressure, backline pressure, or row-based pressure
+- summoner
+  - adds more enemies or expands board pressure over time
+- totem
+  - fixed pressure source or field-effect source
+- boss
+  - phase-based or centerpiece threat
+
+3. Current Movement Pattern Id Baseline
+- straight_1
+  - moves downward by 1 each enemy movement step
+- straight_2
+  - moves downward by 2 each enemy movement step
+- side_shift
+  - may change lane as part of its movement rule
+- hold_then_move
+  - waits or charges before advancing
+- static_support
+  - does not advance normally and acts as a support/structure piece
+
+4. First-Pass Rule
+- New enemy creation should first pick:
+  - one role category
+  - one move_pattern_id
+- Do not invent new categories or movement ids unless the existing list clearly fails.
+
+5. Starter Mapping
+- Basic:
+  - category: frontline
+  - move_pattern_id: straight_1
+- Speeder:
+  - category: runner
+  - move_pattern_id: straight_2
+- Tank:
+  - category: tank
+  - move_pattern_id: straight_1
+
+6. Design Rule
+- Role should describe what pressure the enemy creates.
+- move_pattern_id should describe how that pressure reaches the player.
+- Unique gimmicks should be layered on top of a readable base role.
+
+7. Approval Note
+- This is the current head-approved baseline for enemy role and movement categorization.

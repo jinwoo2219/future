@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"king_kong_minion"
+name = "Kong Minion"
+color = &"brown"
+initial = "k"
+rank = &"special"
+category = &"frontline"
+hp = 10
+attack = 1
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([])
+danger_score = 1
+keywords = PackedStringArray("Minion")
+description = "A thrown minion spawned by King Kong."

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"shuriken"
+name = "Shuriken"
+rarity = &"rare"
+category = &"damage"
+targeting_type = &"self_state"
+effect_key = &"shuriken"
+cooldown = 2
+consumes_action = true
+action_cost = 1
+values = {
+"damage": 8
+}
+keywords = PackedStringArray("Attack", "Multi")
+description = "All front enemies 8."
+detail_description = "Hit the front enemy of every lane for 8 damage."

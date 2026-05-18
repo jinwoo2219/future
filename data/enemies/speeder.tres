@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/speeder/south.png" id="2_speeder_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"speeder"
+name = "Speeder"
+color = &"yellow"
+initial = "S"
+rank = &"normal"
+category = &"runner"
+hp = 18
+attack = 5
+move_pattern_id = &"straight_2"
+traits = Array[StringName]([])
+danger_score = 4
+keywords = PackedStringArray("Speeder")
+icon = ExtResource("2_speeder_icon")
+description = "A fast baseline runner enemy that advances 2 tiles per turn."

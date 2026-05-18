@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"turret_rampage"
+name = "Turret Rampage"
+rarity = &"epic"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"turret_amplify"
+cooldown = 4
+consumes_action = true
+action_cost = 1
+values = {
+"multiplier": 2
+}
+keywords = PackedStringArray("Turret", "Buff")
+description = "Turret damage x2 this turn."
+detail_description = "This turn, all turret damage is doubled."

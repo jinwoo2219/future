@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TotemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/totem_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"speed_totem"
+name = "Speed Totem"
+short = "SP"
+range_type = &"cross"
+effect_key = &"bonus_speed"
+values = {
+"speed_bonus": 1
+}
+keywords = PackedStringArray("Totem", "Speed", "Cross")
+description = "Cross speed +1."
+detail_description = "Enemies in the totem's cross-shaped range gain +1 speed while they remain in range."
+color = Color(0.86, 0.24, 0.28, 1)

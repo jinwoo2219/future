@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"sweep"
+name = "Sweep"
+rarity = &"common"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"sweep"
+cooldown = 2
+values = {
+"damage": 8,
+"full_row_damage": 25
+}
+keywords = PackedStringArray("effect_sweep")
+description = "Target row 8. Full row 25."
+detail_description = "Hit the entire row containing the target. If all 3 lanes in that row are occupied by enemies, damage becomes 25 instead of 8."

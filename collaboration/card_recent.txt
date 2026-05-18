@@ -1,0 +1,200 @@
+Card Data Recent
+
+Date
+- 2026-04-07
+
+Scope
+- Card-data-owned standards only
+- Based on approved schema baseline in new_data_schema_v1.txt
+- No shared schema field changes
+
+SkillData working standard
+- Keep the approved field list as-is:
+  - id
+  - name
+  - rarity
+  - category
+  - targeting_type
+  - cooldown
+  - values
+  - keywords
+  - description
+  - icon
+- Treat values as structured scalar data only.
+- Do not move effect logic into description text.
+- Do not add per-card schema fields unless head approves a shared schema change.
+
+Skill category standard
+- Use a small reusable category set for early production:
+  - attack
+  - defense
+  - control
+  - support
+- Category should describe the skill's primary combat role, not every sub-effect.
+- Multi-role skills should still use one primary category.
+
+Rarity structure standard
+- Use stable rarity ids:
+  - common
+  - uncommon
+  - rare
+  - epic
+- Keep rarity written as a string id in SkillData.
+- Treat the order above as the default progression order.
+- Do not define drop rates here. Probability tables belong to balance / reward data work.
+
+Targeting_type standard
+- Use reusable labels only:
+  - chosen_lane_front_enemy
+  - chosen_lane_all_enemies
+  - all_lanes_front_enemy
+  - random_enemy
+  - self
+  - no_target
+- Use chosen_lane_front_enemy as the default offensive label that matches the current head baseline.
+- If a future skill cannot fit one of these labels, request head review before inventing a one-off targeting type.
+
+Keyword linkage standard
+- keywords should store keyword ids, not explanation text.
+- Add a keyword only when the same rule meaning is expected to appear across multiple skills or systems.
+- If a mechanic is only used once, keep it in description plus structured values instead of creating a new keyword.
+- Keyword ids should be lowercase_with_underscores for stable reuse.
+- A shared keyword registry file is not created yet in this thread.
+
+Card description standard
+- Description should be player-facing rules text, not schema notes.
+- Prefer this format:
+  - Sentence 1: core action and target result.
+  - Sentence 2: optional condition, scaling, or limitation only if needed.
+- Use present-tense direct wording.
+- Mention numbers that come from values directly in the description-facing content.
+- Use keyword terms consistently when a keyword is linked.
+- Avoid hidden defaults, vague words, and battle-resolution detail that belongs in logic.
+
+Not changed here
+- No edits to new_data_schema_v1.txt
+- No edits to battle logic
+- No edits to reward probabilities
+- No shared keyword glossary file
+
+Approval watch
+- A new shared keyword glossary file would need head approval if other threads depend on it.
+- Any expansion of targeting_type beyond the current reusable set should be reviewed if it changes shared targeting expectations.
+
+Added cards
+- multishot
+  - name: Multishot
+  - rarity: common
+  - category: damage
+  - targeting_type: lane_front
+  - cooldown: 1
+  - values:
+    - damage: 10
+    - side_damage: 5
+  - keywords: none
+  - special:
+    - after the main target is successfully hit, deal 5 damage to the frontmost enemy in the left and right adjacent tiles of the main target's tile
+    - if the main target is not hit, the side effect does not trigger
+  - description:
+    - Deal 10 damage to the frontmost enemy in the selected lane. After the main target is successfully hit, deal 5 damage to the frontmost enemy in the left and right adjacent tiles of that target's tile; if the main target is not hit, this side effect does not trigger.
+- pull
+  - name: Pull
+  - rarity: common
+  - category: control
+  - targeting_type: lane_front
+  - cooldown: 2
+  - values: {}
+  - keywords:
+    - pull
+  - special:
+    - pull the frontmost enemy in the left and right adjacent tiles into the main target's tile
+  - description:
+    - Pull the frontmost enemy in the left and right adjacent tiles into the main target's tile.
+- backshot
+  - name: Backshot
+  - rarity: common
+  - category: damage
+  - targeting_type: lane_front
+  - effect_key: back_shot
+  - cooldown: 1
+  - values:
+    - damage: 8
+    - rear_damage: 20
+  - keywords:
+    - effect_backshot
+  - special:
+    - if there is a closest enemy behind the main target in the selected lane, including an enemy behind it in the same tile, deal 20 damage to that enemy
+    - only if there is no enemy behind the main target, deal 8 damage to the main target
+  - description:
+    - If there is a closest enemy behind the main target in the selected lane, including an enemy behind it in the same tile, deal 20 damage to that enemy. Only if there is no enemy behind the main target, deal 8 damage to the main target.
+- sweep
+  - name: Sweep
+  - rarity: common
+  - category: damage
+  - targeting_type: lane_front
+  - effect_key: sweep
+  - cooldown: 2
+  - values:
+    - damage: 8
+    - full_row_damage: 25
+  - keywords:
+    - effect_sweep
+  - special:
+    - deal damage to the main target's row
+    - if all 3 tiles in that row contain enemies, deal 25 damage; otherwise, deal 8 damage
+  - description:
+    - Deal damage to all enemies in the main target's row. If all 3 tiles in that row contain enemies, deal 25 damage instead; otherwise, deal 8 damage.
+- retreat
+  - name: Retreat
+  - rarity: common
+  - category: control
+  - targeting_type: lane_front
+  - effect_key: retreat
+  - cooldown: 2
+  - values: {}
+  - keywords:
+    - effect_retreat
+  - special:
+    - choose one row behind the main target in the same lane
+    - move the main target to the chosen row
+  - description:
+    - Choose one row behind the main target in the same lane. Move the main target to the chosen row.
+- reorganize
+  - name: Reorganize
+  - rarity: rare
+  - category: utility
+  - targeting_type: self_state
+  - effect_key: refresh_damage
+  - cooldown: 3
+  - values:
+    - cooldown_reduction: 1
+  - keywords:
+    - effect_refresh_damage
+  - special:
+    - reduce the current cooldown of all damage cards by 1
+  - description:
+    - Reduce the current cooldown of all damage cards by 1.
+- overdrive
+  - name: Overdrive
+  - rarity: rare
+  - category: utility
+  - targeting_type: self_state
+  - effect_key: gain_action
+  - cooldown: 3
+  - values:
+    - extra_actions: 1
+  - keywords:
+    - effect_gain_action
+  - special:
+    - gain 1 extra card use this turn
+  - description:
+    - Gain 1 extra card use this turn.
+
+Current integration note
+- The approved card/template baseline includes a `special` field, but the live `SkillData` script at `scripts/data/skill_data.gd` does not export `special` yet.
+- The new asset was added using the live resource format, so the special behavior summary is currently preserved in description and in this thread log rather than a serialized `special` property.
+- `back_shot` should be used only when a card specifically targets a back enemy and cannot be expressed by existing effect keys.
+- `sweep` is currently implemented as a row-wide hit on all enemies in the main target's row, because the card says it affects the targeted row as a whole.
+- `retreat` is currently implemented as a same-lane backward row choice for the main target after lane-front targeting.
+- `refresh_damage` currently affects only damage cards that are already on cooldown.
+- `gain_action` currently adds to the turn's remaining actions immediately.

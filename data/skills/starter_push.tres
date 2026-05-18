@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"push"
+name = "Push"
+rarity = &"common"
+category = &"control"
+targeting_type = &"chosen_lane_front_enemy"
+effect_key = &"push_side"
+cooldown = 1
+values = {
+"push_distance": 1
+}
+keywords = PackedStringArray("push", "effect_push_side")
+description = "Push left or right by 1."
+detail_description = "Choose a lane, then choose left or right. Move the target 1 tile in that direction."

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"intimidate"
+name = "Intimidate"
+rarity = &"rare"
+category = &"control"
+targeting_type = &"lane_front"
+effect_key = &"scare"
+cooldown = 3
+consumes_action = true
+action_cost = 1
+values = {
+"reverse_turns": 2
+}
+keywords = PackedStringArray("Control", "Debuff")
+description = "Reverse move 2 turns."
+detail_description = "Reverse the target's movement for the next 2 enemy turns."

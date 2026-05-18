@@ -1,0 +1,47 @@
+New Card Effect Key Rule V1
+
+1. Purpose
+- This document defines the head-approved rule for creating and reusing card effect keys.
+- Card Data work should follow this rule before proposing new battle-effect logic.
+
+2. Core Rule
+- Reuse existing effect_key values first.
+- Only add a new effect_key when the card cannot be expressed through an existing effect_key plus data values.
+
+3. Decision Order
+- Step 1:
+  - Check whether an existing effect_key already matches the card's resolution structure.
+- Step 2:
+  - Check whether the card can be expressed by reusing the same effect_key with different values.
+- Step 3:
+  - Check whether the card can still fit an existing effect structure with a small data-level variation.
+- Step 4:
+  - Only if all of the above fail, propose a new effect_key.
+
+4. Reuse Priority
+- Prefer:
+  - existing effect_key reuse
+  - values-based tuning
+  - keyword-based description extension
+- Avoid:
+  - one-card one-effect-key behavior
+  - adding new runtime effect branches for simple number changes
+
+5. When a New effect_key Is Justified
+- The effect resolves in a different order than existing keys
+- The effect changes target handling in a fundamentally different way
+- The effect adds a genuinely new combat interaction that existing keys cannot express
+
+6. Card Thread Rule
+- Card Data thread should not casually invent new effect_key values.
+- If a new effect_key seems necessary, report it clearly and explain why reuse is not enough.
+
+7. Current Effect Key Baseline
+- bullet
+- bomb
+- push_side
+- multishot
+- pull
+
+8. Approval Note
+- This is the current head-approved baseline for effect_key operation.

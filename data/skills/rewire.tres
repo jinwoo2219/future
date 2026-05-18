@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"rewire"
+name = "Rewire"
+rarity = &"epic"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"swap_cooldowns"
+cooldown = 4
+consumes_action = true
+action_cost = 1
+values = {}
+keywords = PackedStringArray("Cooldown", "Swap")
+description = "Swap 2 card CDs."
+detail_description = "Choose 2 cards and swap their current remaining cooldowns."

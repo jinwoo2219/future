@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"dash"
+name = "Dash"
+color = &"dark_pink"
+initial = "DA"
+rank = &"normal"
+category = &"assault"
+hp = 30
+attack = 4
+move_pattern_id = &"dash_countdown"
+traits = Array[StringName]([])
+danger_score = 8
+keywords = PackedStringArray("Dash")
+description = "Hits the core after 3 turns."

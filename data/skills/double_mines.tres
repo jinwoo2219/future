@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"double_mines"
+name = "Double Mines"
+rarity = &"rare"
+category = &"utility"
+targeting_type = &"self_state"
+effect_key = &"double_mines"
+cooldown = 3
+values = {}
+keywords = PackedStringArray("Install", "Mine")
+description = "Double all mines."
+detail_description = "Double the mine stack count on every tile that already has at least one mine."

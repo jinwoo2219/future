@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"cross"
+name = "Cross"
+rarity = &"rare"
+category = &"damage"
+targeting_type = &"lane_front"
+effect_key = &"cross_blast"
+cooldown = 3
+values = {
+"damage": 8,
+"full_damage": 25,
+"threshold": 3
+}
+keywords = PackedStringArray("effect_cross")
+description = "Cross 8. 3+ hits: 25."
+detail_description = "Hit the cross area centered on the target tile. If 3 or more enemies are hit, all hit enemies take 25. Otherwise all hit enemies take 8."

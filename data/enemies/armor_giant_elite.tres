@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"armor_giant_elite"
+name = "Armor Giant"
+color = &"light_gray"
+initial = "AG"
+rank = &"elite"
+category = &"elite"
+hp = 80
+attack = 7
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([&"damage_cap_10"])
+danger_score = 1
+keywords = PackedStringArray("Elite")
+description = "Max 10 damage per hit."

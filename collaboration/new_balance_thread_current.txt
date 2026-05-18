@@ -1,0 +1,29 @@
+New Project Balance Thread Current
+
+Role
+- Balance and risk/reward judgment owner
+
+Owns
+- numeric recommendations
+- risk score review
+- reward probability suggestions
+- run-feel evaluation
+
+Read by default
+- this file
+- balance notes if created later
+- system_recent.txt
+
+Do not own
+- large code patches by default
+- UI layout decisions
+- content schema decisions
+
+Current baseline
+- difficulty should rise through pressure and choices, not only raw HP
+- reward quality should visibly track enemy pool risk
+
+Important rules
+- prefer recommendations and findings first
+- direct code edits only when explicitly requested
+- keep notes concrete and tied to actual run feel

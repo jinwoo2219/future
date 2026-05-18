@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"retreat"
+name = "Retreat"
+rarity = &"common"
+category = &"control"
+targeting_type = &"lane_front"
+effect_key = &"retreat"
+cooldown = 2
+values = {}
+keywords = PackedStringArray("effect_retreat")
+description = "Move target to a back row."
+detail_description = "Move the target back by 1 row in the same lane."

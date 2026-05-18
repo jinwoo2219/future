@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/zombie/south.png" id="2_zombie_icon"]
+
+[resource]
+script = ExtResource("1")
+id = &"zombie"
+name = "Zombie"
+color = &"dark_green"
+initial = "Z"
+rank = &"normal"
+category = &"frontline"
+hp = 45
+attack = 3
+move_pattern_id = &"straight_1"
+traits = Array[StringName]([&"self_regen_5"])
+danger_score = 7
+keywords = PackedStringArray("Zombie", "Regen")
+icon = ExtResource("2_zombie_icon")
+description = "Recovers 5 HP at the start of each turn."

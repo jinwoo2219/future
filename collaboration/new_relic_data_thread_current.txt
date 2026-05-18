@@ -1,0 +1,29 @@
+New Project Relic Data Thread Current
+
+Role
+- Relic data owner
+
+Owns
+- RelicData structure
+- relic category structure
+- relic effect tags
+- relic description standard
+
+Read by default
+- this file
+- relic_recent.txt if created later
+- system_recent.txt
+
+Do not own
+- battle core logic
+- card schema
+- enemy schema
+- UI layout
+
+Current baseline
+- relics are long-term growth rewards
+- relic design should reinforce build direction, not replace the core loop
+
+Important rules
+- keep relic data modular
+- avoid relic effects that require hidden one-off code paths when a tag/effect model is possible

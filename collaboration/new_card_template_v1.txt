@@ -1,0 +1,90 @@
+New Card Template V1
+
+1. Purpose
+- This template defines the head-approved baseline card format for the new project.
+- Card work should use this template before adding large numbers of new skills.
+
+2. Core Card Definition
+- A card is defined by:
+  - rarity
+  - category
+  - values
+  - cooldown
+  - special ability
+
+3. Required Fields
+- id
+- name
+- rarity
+- category
+- targeting_type
+- effect_key
+- cooldown
+- values
+- special
+- keywords
+- description
+- icon
+
+4. Current Rarity Baseline
+- common
+- rare
+- epic
+- elite
+
+5. Current Category Baseline
+- damage (D)
+- control (C)
+- utility (U)
+
+6. Expansion Rule
+- rarity and category may be expanded later.
+- Do not implement card data in a way that assumes the current lists are permanently fixed.
+
+7. Field Meaning
+- rarity:
+  - progression / reward tier of the card
+- category:
+  - the card's combat role family
+- values:
+  - main numeric effect values
+- cooldown:
+  - turn-based reuse timer
+- special:
+  - one-line special ability summary or special rule hook
+- targeting_type:
+  - reusable targeting label, preferably lane-based by default
+- effect_key:
+  - shared battle-effect resolver key used by runtime logic
+
+7-1. Current Targeting Baseline
+- lane_front
+- lane_front_tile
+- lane_all
+- lane_choice
+- lane_front_push_side
+- self_state
+- global_rule
+
+8. Recommended Writeup Form
+- Name:
+- Rarity:
+- Category:
+- Cooldown:
+- Targeting Type:
+- Values:
+- Special:
+- Keywords:
+- Short Description:
+
+9. Current Input Direction
+- Most cards should use lane-based input by default.
+- Tile-based input should be treated as an exception, not the standard.
+
+10. Approval Note
+- This is the current head-approved baseline for card-definition work.
+- Card Data thread should use this with new_data_schema_v1.txt.
+
+11. Effect Key Rule
+- Reuse existing effect_key values first.
+- Only propose a new effect_key when the card cannot be expressed by an existing effect structure plus values.

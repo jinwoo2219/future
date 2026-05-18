@@ -1,0 +1,67 @@
+New Wave System V1
+
+1. Purpose
+- This document defines the head-approved baseline for wave categorization and wave rule slots.
+- Wave work should use this before adding larger wave variation.
+
+1-1. Current Baseline Rule
+- The current implemented wave system is the default wave baseline.
+
+2. Core Wave Types
+- normal
+  - baseline pressure wave
+- rush
+  - speed-focused pressure wave
+- wall
+  - high-durability pressure wave
+- mixed
+  - mixed-role pressure wave
+- final
+  - final clear-focused wave with no turn limit
+
+3. Current Design Rule
+- A wave should be readable as a pressure pattern, not just a random enemy pile.
+- Wave type should describe what kind of pressure the player is about to handle.
+
+4. Rule Slots
+- wave_type
+  - shared wave category id
+- rows
+  - row-by-row enemy composition list
+- turn_limit
+  - how many turns the wave is expected to last
+- is_final_wave
+  - whether the wave is a clear-focused final wave
+- guaranteed_enemy_ids
+  - enemies that must appear in the wave
+- blocked_enemy_ids
+  - enemies that must not appear in the wave
+- special_rules
+  - reusable wave-specific rule ids
+
+5. Current Baseline Interpretation
+- normal / rush / wall / mixed:
+  - use a turn limit
+- final:
+  - no turn limit
+  - clear all enemies to finish
+
+6. Row Rules
+- A row may not exceed 3 enemies.
+- Each enemy in a row is assigned to a random lane unless a later rule overrides it.
+- Duplicate lane assignment inside a row is allowed.
+- Current row-size probability baseline:
+  - 1 enemy: 35%
+  - 2 enemies: 50%
+  - 3 enemies: 15%
+
+7. Generation Rule
+- Wave structure should be generated before battle begins and stored as battle-ready data.
+- Battle flow should consume prepared wave data, not invent it live each moment.
+
+8. Final Wave Rule
+- The last wave is a final wave by default unless explicitly overridden later.
+- Final wave has no turn limit and is resolved by full enemy clear.
+
+9. Approval Note
+- This is the current head-approved baseline for wave-system categorization.

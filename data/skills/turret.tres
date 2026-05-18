@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skill_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"turret"
+name = "Turret"
+rarity = &"common"
+category = &"install"
+targeting_type = &"tile_install"
+effect_key = &"install_turret"
+cooldown = 2
+values = {
+"attack": 3,
+"hp": 2
+}
+keywords = PackedStringArray("effect_install_turret")
+description = "Front 3. HP 2."
+detail_description = "Install a 2 HP turret. Each structure turn, it deals 3 damage to the front enemy in its lane."

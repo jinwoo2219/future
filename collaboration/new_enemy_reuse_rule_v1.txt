@@ -1,0 +1,60 @@
+New Enemy Reuse Rule V1
+
+1. Purpose
+- This document defines the head-approved rule for reusing enemy categories, movement ids, traits, and keywords.
+- Enemy Data work should follow this rule before proposing new enemy-side identifiers.
+
+2. Core Rule
+- Reuse existing shared enemy identifiers first.
+- Only add a new category, move_pattern_id, trait, or keyword when the enemy cannot be expressed cleanly with the current shared set.
+
+3. Decision Order
+- Step 1:
+  - Check whether an existing enemy role category already matches the enemy's pressure role.
+- Step 2:
+  - Check whether an existing move_pattern_id already matches the enemy's movement identity.
+- Step 3:
+  - Check whether existing traits and keywords can express the enemy's reusable behavior tags.
+- Step 4:
+  - Only if the current shared set clearly fails, propose a new shared identifier.
+
+4. Reuse Priority
+- Prefer:
+  - existing role category reuse
+  - existing move_pattern_id reuse
+  - existing trait reuse
+  - existing keyword reuse
+- Avoid:
+  - one-enemy one-category behavior
+  - one-enemy one-move-pattern behavior
+  - creating single-use traits or keywords that do not help future enemies
+
+5. When a New Shared Identifier Is Justified
+- The enemy creates a pressure role not covered by current categories
+- The enemy moves in a structurally different way than current move_pattern_id values
+- The enemy needs a reusable trait or keyword that will likely appear on multiple future enemies
+
+6. Enemy Thread Rule
+- Enemy Data thread should not casually invent new categories, move_pattern_id values, traits, or keywords.
+- If a new shared identifier seems necessary, report it clearly and explain why reuse is not enough.
+
+7. Current Shared Baseline
+- categories:
+  - frontline
+  - runner
+  - tank
+  - disruptor
+  - support
+  - artillery
+  - summoner
+  - totem
+  - boss
+- move_pattern_id:
+  - straight_1
+  - straight_2
+  - side_shift
+  - hold_then_move
+  - static_support
+
+8. Approval Note
+- This is the current head-approved baseline for enemy-side shared-id reuse.

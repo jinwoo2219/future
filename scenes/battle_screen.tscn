@@ -1,0 +1,859 @@
+[gd_scene format=3 uid="uid://ciqee2tu57vy2"]
+
+[ext_resource type="Script" uid="uid://drfqnp3f4upxn" path="res://scripts/battle_screen.gd" id="1_skx83"]
+[ext_resource type="Texture2D" path="res://asset/card_new/skill_list.png" id="2_skill_list"]
+[ext_resource type="Texture2D" path="res://asset/turn_action/back.png" id="3_control_back"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_main"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.109804, 0.0941176, 0.0705882, 0.64)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.478431, 0.611765, 0.384314, 0.3)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_control_zone_clear"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_side"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.121569, 0.105882, 0.0784314, 0.72)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.521569, 0.658824, 0.407843, 0.28)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.28)
+shadow_size = 14
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_skill_list_panel"]
+texture = ExtResource("2_skill_list")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enemy_deck_slot"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.180392, 0.145098, 0.117647, 0.84)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878431, 0.819608, 0.678431, 0.52)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lane_frame"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.133333, 0.121569, 0.0862745, 0.76)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.458824, 0.603922, 0.376471, 0.42)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.36)
+shadow_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview_tile"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.215686, 0.270588, 0.141176, 0.82)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.882353, 0.556863, 0.82)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.788235, 0.85098, 0.482353, 0.18)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_battle_tile"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.141176, 0.145098, 0.0941176, 0.58)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72549, 0.784314, 0.6, 0.26)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_count_clear"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_button"]
+bg_color = Color(0.180392, 0.247059, 0.121569, 0.84)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.713726, 0.878431, 0.509804, 0.72)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.713726, 0.878431, 0.509804, 0.15)
+shadow_size = 10
+
+[node name="BattleScreen" type="Control" unique_id=226601524]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_skx83")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1684686780]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0627451, 0.0470588, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1913760844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RootSplit" type="HBoxContainer" parent="Margin" unique_id=116944390]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="CombatZone" type="PanelContainer" parent="Margin/RootSplit" unique_id=952212875]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_main")
+
+[node name="CombatMargin" type="MarginContainer" parent="Margin/RootSplit/CombatZone" unique_id=929029611]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="CombatSplit" type="HBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin" unique_id=1603459742]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LeftColumn" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit" unique_id=1417635352]
+custom_minimum_size = Vector2(226, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="EnemyPool" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn" unique_id=515905279]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_side")
+
+[node name="EnemyPoolMargin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool" unique_id=1533273067]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="EnemyPoolGrid" type="GridContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin" unique_id=565798158]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 5
+
+[node name="EnemyDeckTile1" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin/EnemyPoolGrid" unique_id=1304531703]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile2" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin/EnemyPoolGrid" unique_id=1198923389]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile3" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin/EnemyPoolGrid" unique_id=1362813737]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile4" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin/EnemyPoolGrid" unique_id=814095732]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="EnemyDeckTile5" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/EnemyPool/EnemyPoolMargin/EnemyPoolGrid" unique_id=2018407753]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_enemy_deck_slot")
+
+[node name="BasicInfo" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn" unique_id=1710230809]
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_side")
+
+[node name="BasicInfoLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/LeftColumn/BasicInfo" unique_id=1530722910]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.862745, 0.905882, 0.709804, 1)
+theme_override_font_sizes/font_size = 16
+text = "Battle Info"
+vertical_alignment = 1
+
+[node name="CenterColumn" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit" unique_id=2069335309]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.8
+theme_override_constants/separation = 8
+
+[node name="BoardTopSpacer" type="Control" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn" unique_id=1595888955]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleBoard" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn" unique_id=1388829775]
+custom_minimum_size = Vector2(556, 770)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lane_frame")
+
+[node name="BoardMargin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard" unique_id=2146071836]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="BoardContent" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin" unique_id=77920522]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="BoardTitle" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent" unique_id=303640176]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Battle Board"
+horizontal_alignment = 1
+
+[node name="BoardHint" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent" unique_id=150495001]
+visible = false
+layout_mode = 2
+text = "Three downward lanes. Top tile previews incoming pressure."
+horizontal_alignment = 1
+
+[node name="LaneColumns" type="HBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent" unique_id=1699293198]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 68
+
+[node name="Lane1" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns" unique_id=1092587352]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lane_frame")
+
+[node name="Lane1Margin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1" unique_id=477284680]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Lane1Content" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin" unique_id=950213349]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+
+[node name="Lane1Header" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=871323134]
+visible = false
+layout_mode = 2
+text = "Lane 1"
+horizontal_alignment = 1
+
+[node name="Lane1Preview" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1106239625]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview_tile")
+
+[node name="Lane1PreviewLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Preview" unique_id=703217134]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane1Tile1" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1790670415]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile1Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile1" unique_id=720674391]
+visible = false
+layout_mode = 2
+text = "Tile 1"
+vertical_alignment = 1
+
+[node name="Lane1Tile2" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=2092648409]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile2Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile2" unique_id=1430369759]
+visible = false
+layout_mode = 2
+text = "Tile 2"
+vertical_alignment = 1
+
+[node name="Lane1Tile3" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1775733374]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile3Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile3" unique_id=1588721874]
+visible = false
+layout_mode = 2
+text = "Tile 3"
+vertical_alignment = 1
+
+[node name="Lane1Tile4" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1737844683]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile4Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile4" unique_id=268345941]
+visible = false
+layout_mode = 2
+text = "Tile 4"
+vertical_alignment = 1
+
+[node name="Lane1Tile5" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1216896938]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile5Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile5" unique_id=48921748]
+visible = false
+layout_mode = 2
+text = "Tile 5"
+vertical_alignment = 1
+
+[node name="Lane1Tile6" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content" unique_id=1469295818]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane1Tile6Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane1/Lane1Margin/Lane1Content/Lane1Tile6" unique_id=755372032]
+visible = false
+layout_mode = 2
+text = "Tile 6"
+vertical_alignment = 1
+
+[node name="Lane2" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns" unique_id=1568084287]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lane_frame")
+
+[node name="Lane2Margin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2" unique_id=2097037572]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Lane2Content" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin" unique_id=1178980994]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+
+[node name="Lane2Header" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=222136920]
+visible = false
+layout_mode = 2
+text = "Lane 2"
+horizontal_alignment = 1
+
+[node name="Lane2Preview" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=572283017]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview_tile")
+
+[node name="Lane2PreviewLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Preview" unique_id=23412762]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane2Tile1" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=466676188]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile1Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile1" unique_id=274866003]
+visible = false
+layout_mode = 2
+text = "Tile 1"
+vertical_alignment = 1
+
+[node name="Lane2Tile2" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=1417567644]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile2Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile2" unique_id=164440384]
+visible = false
+layout_mode = 2
+text = "Tile 2"
+vertical_alignment = 1
+
+[node name="Lane2Tile3" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=1191139318]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile3Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile3" unique_id=928107497]
+visible = false
+layout_mode = 2
+text = "Tile 3"
+vertical_alignment = 1
+
+[node name="Lane2Tile4" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=719075568]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile4Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile4" unique_id=414026285]
+visible = false
+layout_mode = 2
+text = "Tile 4"
+vertical_alignment = 1
+
+[node name="Lane2Tile5" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=689763624]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile5Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile5" unique_id=35802439]
+visible = false
+layout_mode = 2
+text = "Tile 5"
+vertical_alignment = 1
+
+[node name="Lane2Tile6" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content" unique_id=1997129487]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane2Tile6Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane2/Lane2Margin/Lane2Content/Lane2Tile6" unique_id=1754098701]
+visible = false
+layout_mode = 2
+text = "Tile 6"
+vertical_alignment = 1
+
+[node name="Lane3" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns" unique_id=1088029646]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lane_frame")
+
+[node name="Lane3Margin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3" unique_id=44039014]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Lane3Content" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin" unique_id=462495739]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+
+[node name="Lane3Header" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=1918748257]
+visible = false
+layout_mode = 2
+text = "Lane 3"
+horizontal_alignment = 1
+
+[node name="Lane3Preview" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=1007014864]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview_tile")
+
+[node name="Lane3PreviewLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Preview" unique_id=657838882]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lane3Tile1" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=853310805]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile1Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile1" unique_id=508307100]
+visible = false
+layout_mode = 2
+text = "Tile 1"
+vertical_alignment = 1
+
+[node name="Lane3Tile2" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=770351970]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile2Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile2" unique_id=739497009]
+visible = false
+layout_mode = 2
+text = "Tile 2"
+vertical_alignment = 1
+
+[node name="Lane3Tile3" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=1597381019]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile3Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile3" unique_id=31052241]
+visible = false
+layout_mode = 2
+text = "Tile 3"
+vertical_alignment = 1
+
+[node name="Lane3Tile4" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=1371110988]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile4Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile4" unique_id=1891966871]
+visible = false
+layout_mode = 2
+text = "Tile 4"
+vertical_alignment = 1
+
+[node name="Lane3Tile5" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=1345409154]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile5Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile5" unique_id=1701264280]
+visible = false
+layout_mode = 2
+text = "Tile 5"
+vertical_alignment = 1
+
+[node name="Lane3Tile6" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content" unique_id=579408986]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_battle_tile")
+
+[node name="Lane3Tile6Label" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/BattleBoard/BoardMargin/BoardContent/LaneColumns/Lane3/Lane3Margin/Lane3Content/Lane3Tile6" unique_id=1735609240]
+visible = false
+layout_mode = 2
+text = "Tile 6"
+vertical_alignment = 1
+
+[node name="PlayerCoreRow" type="HBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn" unique_id=1143454684]
+custom_minimum_size = Vector2(556, 82)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="BoardBottomSpacer" type="Control" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn" unique_id=173601114]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerCoreLeftSpacer" type="Control" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow" unique_id=680018061]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCore" type="PanelContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow" unique_id=2046495768]
+custom_minimum_size = Vector2(408, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_side")
+
+[node name="PlayerCoreMargin" type="MarginContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore" unique_id=915352684]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="PlayerCoreContent" type="VBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore/PlayerCoreMargin" unique_id=1050829206]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PlayerTopRow" type="HBoxContainer" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore/PlayerCoreMargin/PlayerCoreContent" unique_id=2109004739]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayerLifeLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore/PlayerCoreMargin/PlayerCoreContent/PlayerTopRow" unique_id=1226577021]
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.482353, 0.356863, 1)
+theme_override_font_sizes/font_size = 20
+text = "Life"
+vertical_alignment = 1
+
+[node name="PlayerTopSpacer" type="Control" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore/PlayerCoreMargin/PlayerCoreContent/PlayerTopRow" unique_id=1853494512]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCoreLabel" type="Label" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow/PlayerCore/PlayerCoreMargin/PlayerCoreContent" unique_id=1860575755]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.85098, 0.882353, 0.556863, 1)
+theme_override_font_sizes/font_size = 26
+text = "CORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerCoreRightSpacer" type="Control" parent="Margin/RootSplit/CombatZone/CombatMargin/CombatSplit/CenterColumn/PlayerCoreRow" unique_id=747682531]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ControlZone" type="PanelContainer" parent="Margin/RootSplit" unique_id=296121516]
+custom_minimum_size = Vector2(258, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_control_zone_clear")
+
+[node name="ControlBack" type="TextureRect" parent="Margin/RootSplit/ControlZone" unique_id=629440211]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_control_back")
+stretch_mode = 0
+texture_filter = 0
+
+[node name="ControlMargin" type="MarginContainer" parent="Margin/RootSplit/ControlZone" unique_id=611771576]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="RightContent" type="VBoxContainer" parent="Margin/RootSplit/ControlZone/ControlMargin" unique_id=1323675827]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkillList" type="PanelContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent" unique_id=186770967]
+custom_minimum_size = Vector2(0, 484)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_skill_list_panel")
+
+[node name="SkillListMargin" type="MarginContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/SkillList" unique_id=391864838]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="SkillListContent" type="VBoxContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/SkillList/SkillListMargin" unique_id=1243671991]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SkillListLabel" type="Label" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/SkillList/SkillListMargin/SkillListContent" unique_id=501887970]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.862745, 0.905882, 0.709804, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="SkillListBody" type="Label" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/SkillList/SkillListMargin/SkillListContent" unique_id=1218786017]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 18
+text = "Main skills"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionSpacer" type="Control" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent" unique_id=509617883]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="TurnControls" type="PanelContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent" unique_id=1978186341]
+custom_minimum_size = Vector2(0, 214)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_skill_list_panel")
+
+[node name="TurnControlsMargin" type="MarginContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls" unique_id=992747781]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="TurnControlsSplit" type="HBoxContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin" unique_id=1708757543]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ActionCountTile" type="PanelContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit" unique_id=347942446]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_action_count_clear")
+
+[node name="ActionCountArt" type="TextureRect" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit/ActionCountTile" unique_id=372518902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch_mode = 6
+texture_filter = 0
+
+[node name="ActionCount" type="Label" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit/ActionCountTile" unique_id=1793930541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.713726, 0.878431, 0.509804, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButtons" type="VBoxContainer" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit" unique_id=368488081]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="EnergyButton" type="Button" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit/ActionButtons" unique_id=217579831]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_action_button")
+text = "Energy"
+
+[node name="EndTurnButton" type="Button" parent="Margin/RootSplit/ControlZone/ControlMargin/RightContent/TurnControls/TurnControlsMargin/TurnControlsSplit/ActionButtons" unique_id=412841544]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_action_button")
+theme_override_styles/focus = SubResource("StyleBoxFlat_action_button")
+text = "End Turn"
+

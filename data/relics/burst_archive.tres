@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/relic_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"burst_archive"
+name = "Burst Archive"
+source = &"boss"
+boss_group = &"other"
+description = "Immediately gain 3 card rewards."
