@@ -14,6 +14,6 @@ hp = 40
 attack = 4
 move_pattern_id = &"straight_1"
 traits = Array[StringName]([&"stealth_cycle"])
-danger_score = 7
+danger_score = 5
 keywords = PackedStringArray("Ninja", "Stealth")
 description = "Alternates between stealth and reveal. Hidden enemies cannot be targeted, but still take AoE damage."

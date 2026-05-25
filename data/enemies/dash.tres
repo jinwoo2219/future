@@ -14,6 +14,6 @@ hp = 30
 attack = 4
 move_pattern_id = &"dash_countdown"
 traits = Array[StringName]([])
-danger_score = 8
+danger_score = 6
 keywords = PackedStringArray("Dash")
 description = "Hits the core after 3 turns."
