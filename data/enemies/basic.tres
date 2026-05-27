@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
-[ext_resource type="Texture2D" path="res://character/states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south.png" id="2_basic_icon"]
+[ext_resource type="Texture2D" path="res://character/basic/states/64x64_pixel_art_game_enemy_sprite_low_top-down_vie/rotations/south.png" id="2_basic_icon"]
 
 [resource]
 script = ExtResource("1")

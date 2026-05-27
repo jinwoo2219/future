@@ -1,7 +1,7 @@
 extends RefCounted
 
 const RUN_STATE = preload("res://scripts/run_state.gd")
-const SLIME_SINGLE_ICON := preload("res://character/slime/single.png")
+const SLIME_SINGLE_ICON := preload("res://character/basic/slime/single.png")
 
 var owner: Control
 

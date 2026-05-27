@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://character/elite/necromancer/south.png" id="2_necromancer_icon"]
 
 [resource]
 script = ExtResource("1")
@@ -16,4 +17,5 @@ move_pattern_id = &"hold_then_move"
 traits = Array[StringName]([&"necromancy_aura"])
 danger_score = 1
 keywords = PackedStringArray("Elite")
+icon = ExtResource("2_necromancer_icon")
 description = "Dead enemies revive with 10 HP."
