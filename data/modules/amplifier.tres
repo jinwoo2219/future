@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"amplifier"
+name = "Amplifier"
+rarity = &"common"
+effect_key = &"damage_bonus"
+values = {
+"damage_bonus": 5
+}
+description = "Damage card +5."
+detail_description = "Damage and attack cards in this slot deal +5 damage."

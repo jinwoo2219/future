@@ -457,6 +457,7 @@ static func _resolve_install_structure(
 
 	var values: Dictionary = skill.get("values", {})
 	var hp: int = int(values.get("hp", 4))
+	hp += battle._get_module_structure_hp_bonus(skill)
 	var attack: int = int(values.get("attack", 0))
 	var max_stacks: int = int(values.get("max_stacks", 1))
 	var bonus_damage: int = int(values.get("bonus_damage", 0))

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"overheat"
+name = "Overheat"
+rarity = &"rare"
+effect_key = &"overheat"
+values = {
+"damage_multiplier": 1.5,
+"cooldown_penalty": 1
+}
+description = "Damage x1.5. CD +1."
+detail_description = "Damage and attack cards in this slot deal 50% more damage. After any card in this slot is used, it gains +1 cooldown."

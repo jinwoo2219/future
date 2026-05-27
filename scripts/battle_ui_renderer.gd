@@ -2,6 +2,7 @@ extends RefCounted
 class_name BattleUIRenderer
 
 const RELIC_CATALOG = preload("res://scripts/relic_catalog.gd")
+const MODULE_CATALOG = preload("res://scripts/module_catalog.gd")
 const CARD_FILL_CONTROL_PATH := "res://asset/card_new/card_fill_control.png"
 const CARD_FILL_DAMAGE_PATH := "res://asset/card_new/card_fill_damage.png"
 const CARD_FILL_STRUCTURE_PATH := "res://asset/card_new/card_fill_structure.png"
@@ -141,12 +142,16 @@ func build_skill_buttons() -> void:
 			child.queue_free()
 
 	var equipped_skill_ids: Array[String] = owner.RUN_STATE.get_equipped_skill_ids()
-	for skill_id in equipped_skill_ids:
+	for slot_index in range(equipped_skill_ids.size()):
+		var skill_id: String = String(equipped_skill_ids[slot_index])
 		var skill_data: Dictionary = owner.SKILL_CATALOG.get_skill(skill_id)
 		if skill_data.is_empty():
 			continue
 		var skill := {
 			"id": skill_id,
+			"slot_index": slot_index,
+			"module_id": owner.RUN_STATE.get_slot_module_id(slot_index),
+			"module_used_this_battle": false,
 			"name": skill_data["name"],
 			"rarity": String(skill_data.get("rarity", "common")),
 			"category": String(skill_data["category"]),
@@ -517,16 +522,50 @@ func create_skill_card(skill: Dictionary) -> Button:
 	text_column.add_theme_constant_override("separation", 4)
 	text_margin.add_child(text_column)
 
+	var name_row := HBoxContainer.new()
+	name_row.name = "NameRow"
+	name_row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	name_row.add_theme_constant_override("separation", 5)
+	text_column.add_child(name_row)
+
 	var name_label := Label.new()
 	name_label.name = "NameLabel"
 	name_label.text = skill["name"]
+	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_label.clip_text = true
+	name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	name_label.add_theme_font_override("font", _get_card_font())
 	name_label.add_theme_font_size_override("font_size", 22)
 	name_label.add_theme_color_override("font_color", CARD_TEXT_COLOR)
 	name_label.add_theme_color_override("font_outline_color", CARD_TEXT_OUTLINE_COLOR)
 	name_label.add_theme_constant_override("outline_size", 2)
 	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	text_column.add_child(name_label)
+	name_row.add_child(name_label)
+
+	var module_chip := PanelContainer.new()
+	module_chip.name = "ModuleChip"
+	module_chip.custom_minimum_size = Vector2(34, 18)
+	module_chip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	name_row.add_child(module_chip)
+
+	var module_chip_center := CenterContainer.new()
+	module_chip_center.name = "ModuleChipCenter"
+	module_chip_center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	module_chip_center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	module_chip.add_child(module_chip_center)
+
+	var module_chip_label := Label.new()
+	module_chip_label.name = "ModuleChipLabel"
+	module_chip_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	module_chip_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	module_chip_label.add_theme_font_override("font", _get_card_font())
+	module_chip_label.add_theme_font_size_override("font_size", 10)
+	module_chip_label.add_theme_color_override("font_color", CARD_TEXT_COLOR)
+	module_chip_label.add_theme_color_override("font_outline_color", CARD_TEXT_OUTLINE_COLOR)
+	module_chip_label.add_theme_constant_override("outline_size", 1)
+	module_chip_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	module_chip_center.add_child(module_chip_label)
 
 	var desc_label := Label.new()
 	desc_label.name = "DescriptionLabel"
@@ -628,8 +667,10 @@ func create_empty_skill_slot(index: int) -> Button:
 
 
 func apply_skill_card_state(button: Button, skill: Dictionary, usable: bool, current_actions: int) -> void:
-	var name_label: Label = button.get_node_or_null("Row/TextMargin/TextColumn/NameLabel")
+	var name_label: Label = button.get_node_or_null("Row/TextMargin/TextColumn/NameRow/NameLabel")
 	var desc_label: Label = button.get_node_or_null("Row/TextMargin/TextColumn/DescriptionLabel")
+	var module_chip: PanelContainer = button.get_node_or_null("Row/TextMargin/TextColumn/NameRow/ModuleChip")
+	var module_chip_label: Label = button.get_node_or_null("Row/TextMargin/TextColumn/NameRow/ModuleChip/ModuleChipCenter/ModuleChipLabel")
 	var cooldown_box: PanelContainer = button.get_node_or_null("Row/CooldownBox")
 	var cooldown_art: TextureRect = button.get_node_or_null("CooldownArt")
 	var cooldown_label: Label = button.get_node_or_null("Row/CooldownBox/CooldownMargin/CooldownColumn/CooldownLabel")
@@ -653,6 +694,7 @@ func apply_skill_card_state(button: Button, skill: Dictionary, usable: bool, cur
 
 	name_label.text = String(skill["name"])
 	desc_label.text = String(owner._get_runtime_skill_description(skill))
+	_update_skill_module_chip(button, skill, module_chip, module_chip_label)
 	var consumes_action: bool = bool(skill.get("consumes_action", true))
 	var action_cost: int = max(int(skill.get("action_cost", 1)), 0)
 	var has_actions: bool = current_actions >= action_cost or not consumes_action
@@ -783,7 +825,7 @@ func apply_skill_card_state(button: Button, skill: Dictionary, usable: bool, cur
 		cooldown_style.bg_color = Color(0, 0, 0, 0)
 		cooldown_style.border_color = Color(0, 0, 0, 0)
 		name_label.add_theme_font_size_override("font_size", 18)
-		desc_label.add_theme_font_size_override("font_size", 14)
+		desc_label.add_theme_font_size_override("font_size", 13)
 		if art_fill != null:
 			art_fill.texture = fill_texture
 			art_fill.visible = fill_texture != null
@@ -825,3 +867,73 @@ func apply_skill_card_state(button: Button, skill: Dictionary, usable: bool, cur
 	button.add_theme_stylebox_override("focus", card_style)
 	button.add_theme_stylebox_override("disabled", card_style)
 	cooldown_box.add_theme_stylebox_override("panel", cooldown_style)
+
+
+func _update_skill_module_chip(button: Button, skill: Dictionary, module_chip: PanelContainer, module_chip_label: Label) -> void:
+	var module_id: String = String(skill.get("module_id", ""))
+	var module_data: Dictionary = MODULE_CATALOG.get_module(module_id)
+	var chip_style := StyleBoxFlat.new()
+	chip_style.corner_radius_top_left = 4
+	chip_style.corner_radius_top_right = 4
+	chip_style.corner_radius_bottom_right = 4
+	chip_style.corner_radius_bottom_left = 4
+	chip_style.border_width_left = 1
+	chip_style.border_width_top = 1
+	chip_style.border_width_right = 1
+	chip_style.border_width_bottom = 1
+
+	if module_data.is_empty():
+		chip_style.bg_color = Color(0.08, 0.09, 0.1, 0.86)
+		chip_style.border_color = Color(0.62, 0.66, 0.54, 0.82)
+		if module_chip != null:
+			module_chip.add_theme_stylebox_override("panel", chip_style)
+		if module_chip_label != null:
+			module_chip_label.text = "+"
+			module_chip_label.add_theme_color_override("font_color", Color(0.72, 0.78, 0.58, 1.0))
+		button.tooltip_text = ""
+		return
+
+	var module_color: Color = _get_module_color(String(module_data.get("rarity", "common")))
+	chip_style.bg_color = module_color.darkened(0.42)
+	chip_style.border_color = module_color.lightened(0.12)
+	if module_chip != null:
+		module_chip.add_theme_stylebox_override("panel", chip_style)
+	if module_chip_label != null:
+		module_chip_label.text = _get_module_chip_text(String(module_data.get("effect_key", "")))
+		module_chip_label.add_theme_color_override("font_color", CARD_TEXT_COLOR)
+	button.tooltip_text = "%s\n%s" % [
+		String(module_data.get("name", module_id)),
+		String(module_data.get("detail_description", module_data.get("description", "")))
+	]
+
+
+func _get_module_color(rarity: String) -> Color:
+	match rarity.to_lower():
+		"rare":
+			return Color(0.42, 0.78, 1.0, 0.96)
+		"epic":
+			return Color(0.82, 0.48, 1.0, 0.96)
+		_:
+			return Color(0.66, 0.95, 0.58, 0.94)
+
+
+func _get_module_chip_text(effect_key: String) -> String:
+	match effect_key:
+		"cooldown_down":
+			return "CD"
+		"damage_bonus":
+			return "DM"
+		"reduce_right_cd":
+			return "DN"
+		"reduce_left_cd":
+			return "UP"
+		"structure_hp_bonus":
+			return "HP"
+		"control_chip_damage":
+			return "CT"
+		"overheat":
+			return "OH"
+		"first_use_cd_zero":
+			return "RS"
+		_:
+			return "M"

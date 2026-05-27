@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"accelerator"
+name = "Accelerator"
+rarity = &"common"
+effect_key = &"cooldown_down"
+values = {
+"cooldown_bonus": 1
+}
+description = "Slot card CD -1."
+detail_description = "The card in this slot has -1 cooldown. Cooldown cannot go below 0."

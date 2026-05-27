@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"suppression_core"
+name = "Suppression Core"
+rarity = &"common"
+effect_key = &"control_chip_damage"
+values = {
+"damage": 3
+}
+description = "Control hit 3."
+detail_description = "Control cards in this slot deal 3 damage to their controlled target."

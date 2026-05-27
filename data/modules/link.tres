@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ModuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/module_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"link"
+name = "Link"
+rarity = &"rare"
+effect_key = &"reduce_right_cd"
+values = {
+"cooldown_reduction": 1
+}
+description = "Use: below CD -1."
+detail_description = "After this slot's card is used, reduce the cooldown of the slot below it by 1."

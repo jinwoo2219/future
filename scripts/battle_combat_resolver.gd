@@ -523,6 +523,7 @@ func apply_pending_cooldown_swap_selection(skill_id: String) -> bool:
 	var swap_skill_id: String = owner.pending_cooldown_swap_card_id
 	var swap_skill: Dictionary = owner._get_skill(swap_skill_id)
 	owner._set_skill_current_cooldown(swap_skill_id, owner._get_skill_effective_cooldown(swap_skill))
+	owner._apply_after_card_use_module_effects(swap_skill_id)
 	if bool(swap_skill.get("consumes_action", true)):
 		owner.turn_manager.spend_action(max(int(swap_skill.get("action_cost", 1)), 0))
 
@@ -802,6 +803,8 @@ func resolve_pending_skill_on_tile(lane_index: int, row_index: int) -> bool:
 			owner._process_skill_counters_on_use(push_skill)
 			owner._process_card_use_relics()
 			owner._set_skill_current_cooldown("push", owner._get_skill_effective_cooldown(push_skill))
+			owner._apply_control_module_damage_to_instance(push_skill, owner.pending_push_target_id)
+			owner._apply_after_card_use_module_effects("push")
 			owner.turn_manager.spend_action(max(int(push_skill.get("action_cost", 1)), 0))
 			post_action_cleanup()
 			return true
@@ -811,6 +814,8 @@ func resolve_pending_skill_on_tile(lane_index: int, row_index: int) -> bool:
 			owner._process_skill_counters_on_use(hook_skill)
 			owner._process_card_use_relics()
 			owner._set_skill_current_cooldown("hook", owner._get_skill_effective_cooldown(hook_skill))
+			owner._apply_control_module_damage_to_instance(hook_skill, owner.pending_pull_target_id)
+			owner._apply_after_card_use_module_effects("hook")
 			owner.turn_manager.spend_action(max(int(hook_skill.get("action_cost", 1)), 0))
 			post_action_cleanup()
 			return true
@@ -820,6 +825,8 @@ func resolve_pending_skill_on_tile(lane_index: int, row_index: int) -> bool:
 			owner._process_skill_counters_on_use(retreat_skill)
 			owner._process_card_use_relics()
 			owner._set_skill_current_cooldown("retreat", owner._get_skill_effective_cooldown(retreat_skill))
+			owner._apply_control_module_damage_to_instance(retreat_skill, owner.pending_retreat_target_id)
+			owner._apply_after_card_use_module_effects("retreat")
 			owner.turn_manager.spend_action(max(int(retreat_skill.get("action_cost", 1)), 0))
 			post_action_cleanup()
 			return true
@@ -837,7 +844,7 @@ func resolve_bomb_at(lane_index: int, row_index: int) -> bool:
 
 	var skill: Dictionary = owner._get_skill("bomb")
 	var bonus: int = owner._peek_next_damage_card_bonus()
-	var damage: int = int(skill.get("values", {}).get("damage", 10)) + bonus
+	var damage: int = owner._get_module_adjusted_damage(skill, int(skill.get("values", {}).get("damage", 10)) + bonus)
 	var affected_ids := {}
 	var aoe_bonus: int = max(owner.aoe_range_bonus_this_turn, 0)
 	for target_row in range(row_index - aoe_bonus, row_index + aoe_bonus + 1):
@@ -871,8 +878,8 @@ func resolve_cross_at(lane_index: int, row_index: int) -> bool:
 	var skill: Dictionary = owner._get_skill("cross")
 	var values: Dictionary = skill.get("values", {})
 	var bonus: int = owner._peek_next_damage_card_bonus()
-	var damage: int = int(values.get("damage", 8)) + bonus
-	var full_damage: int = int(values.get("full_damage", 25)) + bonus
+	var damage: int = owner._get_module_adjusted_damage(skill, int(values.get("damage", 8)) + bonus)
+	var full_damage: int = owner._get_module_adjusted_damage(skill, int(values.get("full_damage", 25)) + bonus)
 	var threshold: int = int(values.get("threshold", 3))
 	var aoe_bonus: int = max(owner.aoe_range_bonus_this_turn, 0)
 	var affected_targets: Array = []

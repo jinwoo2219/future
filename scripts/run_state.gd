@@ -8,6 +8,7 @@ const MAX_ENEMY_DECK := 5
 const STAGES_PER_ACT := 7
 const ELITE_STAGE_CHANCE := 0.15
 const GUARANTEED_ELITE_STAGE_INDEX := 5
+const TOTEMS_ENABLED := false
 const ACTION_BOSS_RELIC_IDS := [
 	"tight_pack",
 	"short_draft",
@@ -25,6 +26,7 @@ static var current_stage_elite_id: String = ""
 static var current_stage_totem_id: String = ""
 static var current_owned_skill_ids: Array[String] = []
 static var current_equipped_skill_ids: Array[String] = []
+static var current_slot_module_ids: Array[String] = []
 static var current_life: int = 10
 static var current_max_life: int = 10
 static var current_relic_ids: Array[String] = []
@@ -50,6 +52,7 @@ static func reset_run() -> void:
 	current_stage_totem_id = ""
 	current_owned_skill_ids = ["bullet", "bomb", "push"]
 	current_equipped_skill_ids = ["bullet", "bomb", "push"]
+	current_slot_module_ids = _build_empty_slot_modules()
 	current_life = 10
 	current_max_life = 10
 	current_relic_ids.clear()
@@ -124,11 +127,51 @@ static func get_current_stage_totem_id() -> String:
 
 
 static func set_current_stage_totem_id(totem_id: String) -> void:
+	if not TOTEMS_ENABLED:
+		current_stage_totem_id = ""
+		return
 	current_stage_totem_id = totem_id
 
 
 static func get_equipped_skill_ids() -> Array[String]:
 	return current_equipped_skill_ids.duplicate()
+
+
+static func _build_empty_slot_modules() -> Array[String]:
+	var module_ids: Array[String] = []
+	for _index in range(MAX_SKILLS):
+		module_ids.append("")
+	return module_ids
+
+
+static func _ensure_slot_module_size() -> void:
+	while current_slot_module_ids.size() < MAX_SKILLS:
+		current_slot_module_ids.append("")
+	while current_slot_module_ids.size() > MAX_SKILLS:
+		current_slot_module_ids.pop_back()
+
+
+static func get_slot_module_ids() -> Array[String]:
+	_ensure_slot_module_size()
+	return current_slot_module_ids.duplicate()
+
+
+static func get_slot_module_id(slot_index: int) -> String:
+	_ensure_slot_module_size()
+	if slot_index < 0 or slot_index >= current_slot_module_ids.size():
+		return ""
+	return String(current_slot_module_ids[slot_index])
+
+
+static func set_slot_module_id(slot_index: int, module_id: String) -> void:
+	_ensure_slot_module_size()
+	if slot_index < 0 or slot_index >= current_slot_module_ids.size():
+		return
+	current_slot_module_ids[slot_index] = module_id
+
+
+static func clear_slot_module_id(slot_index: int) -> void:
+	set_slot_module_id(slot_index, "")
 
 
 static func get_owned_skill_ids() -> Array[String]:
@@ -279,6 +322,8 @@ static func _build_stage_label(stage_index: int) -> String:
 
 
 static func _attach_random_totems_to_stage_options() -> void:
+	if not TOTEMS_ENABLED:
+		return
 	var totem_ids: Array[String] = TOTEM_CATALOG.all_totem_ids()
 	if totem_ids.is_empty():
 		return

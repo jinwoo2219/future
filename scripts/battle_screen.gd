@@ -23,6 +23,7 @@ const RUN_STATE = preload("res://scripts/run_state.gd")
 const ENEMY_CATALOG = preload("res://scripts/enemy_catalog.gd")
 const TOTEM_CATALOG = preload("res://scripts/totem_catalog.gd")
 const SKILL_CATALOG = preload("res://scripts/skill_catalog.gd")
+const MODULE_CATALOG = preload("res://scripts/module_catalog.gd")
 const SKILL_EFFECT_RESOLVER = preload("res://scripts/skill_effect_resolver.gd")
 const ACTION_COUNT_READY_PATH := "res://asset/turn_action/useablecount.png"
 const ACTION_COUNT_ZERO_PATH := "res://asset/turn_action/countzero.png"
@@ -562,6 +563,7 @@ func _reset_run() -> void:
 	for skill in skills:
 		skill["current_cd"] = 0
 		skill["current_stack"] = 0
+		skill["module_used_this_battle"] = false
 
 	_clear_board()
 	_clear_all_structures()
@@ -751,6 +753,7 @@ func _on_skill_pressed(skill_id: String) -> void:
 		_play_ui_sound("error")
 		return
 
+	var module_control_target_id: int = _get_module_control_target_id(skill)
 	var used: bool = SKILL_EFFECT_RESOLVER.resolve_skill(self, skill)
 
 	if not used:
@@ -764,6 +767,8 @@ func _on_skill_pressed(skill_id: String) -> void:
 	_process_skill_counters_on_use(skill)
 	_process_card_use_relics()
 	_set_skill_current_cooldown(skill_id, _get_skill_effective_cooldown(skill))
+	_apply_control_module_damage_to_instance(skill, module_control_target_id)
+	_apply_after_card_use_module_effects(skill_id)
 	if consumes_action:
 		turn_manager.spend_action(action_cost)
 	_post_action_cleanup()
@@ -1162,6 +1167,9 @@ func _has_enemy_trait_on_field(trait_id: String) -> bool:
 
 func _get_skill_effective_cooldown(skill: Dictionary) -> int:
 	var cooldown: int = int(skill.get("cooldown", 0))
+	var module_data: Dictionary = _get_skill_module(skill)
+	if String(module_data.get("effect_key", "")) == "cooldown_down":
+		cooldown -= int(module_data.get("values", {}).get("cooldown_bonus", 1))
 	if RUN_STATE.has_relic("compressed_time"):
 		cooldown -= 2
 	if RUN_STATE.has_relic("clockwork") and cooldown >= 3:
@@ -1197,6 +1205,94 @@ func _get_same_card_damage_bonus(skill: Dictionary) -> int:
 	if String(skill.get("id", "")) != last_used_skill_id:
 		return 0
 	return max(same_card_damage_streak, 0) * 5
+
+
+func _get_skill_module(skill: Dictionary) -> Dictionary:
+	return MODULE_CATALOG.get_module(String(skill.get("module_id", "")))
+
+
+func _is_damage_module_skill(skill: Dictionary) -> bool:
+	var category := String(skill.get("category", "")).to_lower()
+	return category == "damage" or category == "attack"
+
+
+func _get_module_adjusted_damage(skill: Dictionary, amount: int) -> int:
+	var adjusted: int = amount
+	var module_data: Dictionary = _get_skill_module(skill)
+	var effect_key: String = String(module_data.get("effect_key", ""))
+	if module_data.is_empty() or not _is_damage_module_skill(skill):
+		return adjusted
+	if effect_key == "damage_bonus":
+		adjusted += int(module_data.get("values", {}).get("damage_bonus", 0))
+	elif effect_key == "overheat":
+		var multiplier: float = float(module_data.get("values", {}).get("damage_multiplier", 1.5))
+		adjusted = int(ceil(float(adjusted) * multiplier))
+	return max(adjusted, 0)
+
+
+func _get_module_structure_hp_bonus(skill: Dictionary) -> int:
+	var module_data: Dictionary = _get_skill_module(skill)
+	if String(module_data.get("effect_key", "")) != "structure_hp_bonus":
+		return 0
+	return max(int(module_data.get("values", {}).get("hp_bonus", 0)), 0)
+
+
+func _get_module_control_target_id(skill: Dictionary) -> int:
+	if String(skill.get("category", "")).to_lower() != "control":
+		return -1
+	var module_data: Dictionary = _get_skill_module(skill)
+	if String(module_data.get("effect_key", "")) != "control_chip_damage":
+		return -1
+	if selected_lane == -1:
+		return -1
+	var target: Dictionary = _get_front_enemy_in_lane(selected_lane)
+	if target.is_empty():
+		return -1
+	return int(target.get("instance_id", -1))
+
+
+func _apply_control_module_damage_to_instance(skill: Dictionary, instance_id: int) -> void:
+	if instance_id == -1:
+		return
+	var module_data: Dictionary = _get_skill_module(skill)
+	if String(module_data.get("effect_key", "")) != "control_chip_damage":
+		return
+	var target: Dictionary = _find_enemy_by_instance_id(instance_id)
+	if target.is_empty():
+		return
+	_damage_enemy(target, int(module_data.get("values", {}).get("damage", 3)))
+
+
+func _apply_after_card_use_module_effects(skill_id: String) -> void:
+	var index := _get_skill_index(skill_id)
+	if index == -1:
+		return
+	var skill: Dictionary = skills[index]
+	var module_data: Dictionary = _get_skill_module(skill)
+	if module_data.is_empty():
+		return
+	var effect_key: String = String(module_data.get("effect_key", ""))
+	var values: Dictionary = module_data.get("values", {})
+	if effect_key == "reduce_right_cd":
+		_reduce_slot_cooldown(index + 1, int(values.get("cooldown_reduction", 1)))
+	elif effect_key == "reduce_left_cd":
+		_reduce_slot_cooldown(index - 1, int(values.get("cooldown_reduction", 1)))
+	elif effect_key == "overheat":
+		skills[index]["current_cd"] = max(int(skills[index].get("current_cd", 0)) + int(values.get("cooldown_penalty", 1)), 0)
+	elif effect_key == "first_use_cd_zero" and not bool(skills[index].get("module_used_this_battle", false)):
+		skills[index]["current_cd"] = 0
+		skills[index]["module_used_this_battle"] = true
+
+
+func _reduce_slot_cooldown(slot_index: int, amount: int) -> void:
+	if amount <= 0:
+		return
+	if slot_index < 0 or slot_index >= skills.size():
+		return
+	var current_cd: int = int(skills[slot_index].get("current_cd", 0))
+	if current_cd <= 0:
+		return
+	skills[slot_index]["current_cd"] = max(current_cd - amount, 0)
 
 
 func _get_skill_counter(skill_id: String) -> int:
@@ -1382,6 +1478,8 @@ func _clear_stage_totem() -> void:
 
 
 func _spawn_stage_totem_if_needed() -> void:
+	if not RUN_STATE.TOTEMS_ENABLED:
+		return
 	var totem_id: String = RUN_STATE.get_current_stage_totem_id()
 	if totem_id.is_empty():
 		return
@@ -1516,7 +1614,8 @@ func _damage_enemy(enemy: Dictionary, amount: int) -> void:
 
 func _damage_enemy_from_card(enemy: Dictionary, amount: int) -> void:
 	_play_player_attack(enemy)
-	combat_resolver.damage_enemy(enemy, amount, true)
+	var skill: Dictionary = _get_skill(selected_skill_id)
+	combat_resolver.damage_enemy(enemy, _get_module_adjusted_damage(skill, amount), true)
 
 
 func _apply_life_damage(amount: int) -> void:
